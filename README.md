@@ -30,9 +30,9 @@ El proyecto utiliza una arquitectura robusta combinando el ecosistema de Java y 
 ## 🚀 Instalación y Configuración
 
 ### Requisitos Previos
-* **Java 17+**
+* **Java 21+**
 * **Node.js 18+**
-* **MySQL Server**
+* **MySQL**
 * **NPM** (incluido con Node)
 
 ### Pasos para replicar el entorno
