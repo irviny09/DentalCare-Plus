@@ -1,0 +1,20 @@
+{
+  "name": "dentcare_plus",
+  "version": "1.0.0",
+  "description": "Proyecto de Consultoria Dental con SpringBoot, SASS y NPM",
+  "keywords": [
+    "SASS",
+    "NPM",
+    "SPRINGBOOT"
+  ],
+  "license": "ISC",
+  "author": "Irvin Marquez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch scss:src/main/resources/static/css"
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}
