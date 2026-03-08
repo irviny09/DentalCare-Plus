@@ -1,3 +1,7 @@
-.header{
-    background-color: blue;
-}
+@forward 'base/globals';
+@forward 'base/mixins';
+@forward 'base/variables';
+
+
+@forward 'layout/header';
+@forward 'layout/imagen'
