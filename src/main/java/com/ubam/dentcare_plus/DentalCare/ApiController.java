@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ApiController {
     
-    @PostMapping(value = "test")
+    @PostMapping("/test")
     public String algo(){
         return "test private";
     }
