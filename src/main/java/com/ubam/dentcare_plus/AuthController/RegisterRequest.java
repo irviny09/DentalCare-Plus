@@ -1,10 +1,11 @@
 package com.ubam.dentcare_plus.AuthController;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Builder
@@ -16,4 +17,5 @@ public class RegisterRequest {
     String name;
     String lastname;
     String celphone;
+    Date fechaNacimiento;
 }

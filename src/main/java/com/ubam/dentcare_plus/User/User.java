@@ -16,7 +16,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -54,6 +53,7 @@ public class User implements UserDetails{
     LocalDateTime fechaRegistro;
 
     @Column(name = "Usuario_Activo")
+    @Builder.Default
     Boolean activo = true;
     
     @ManyToOne

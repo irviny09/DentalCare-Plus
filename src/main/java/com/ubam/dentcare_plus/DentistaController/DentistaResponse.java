@@ -1,4 +1,4 @@
-package com.ubam.dentcare_plus.AuthController;
+package com.ubam.dentcare_plus.DentistaController;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-    String username;
-    String password;
-
+@AllArgsConstructor
+public class DentistaResponse {
+    String message;
 }

@@ -11,7 +11,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.ubam.dentcare_plus.jwt.JwtAuthenticationFiler;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +29,7 @@ public class SecurityConfig {
                         .disable())
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("Administrador")
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> 
                         sessionManager

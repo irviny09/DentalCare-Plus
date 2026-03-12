@@ -4,6 +4,8 @@ import com.ubam.dentcare_plus.User.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,13 +23,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "tbl_ope_dentistas")
 public class Dentista {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DentistaId")
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "Dentista_UsuarioId")
     private User user;
-    @Column(name = "Dentista_Cedula")
+    @Column(name = "Dentista_CedulaProf")
     private String cedula;
-    @Column(name = "Dentista_Especialidad")
+    @Column(name = "Especialidad")
     private String especialidad;
 }

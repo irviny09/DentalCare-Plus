@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ubam.dentcare_plus.Entities.Cliente;
+import com.ubam.dentcare_plus.Repositories.ClienteRepository;
 import com.ubam.dentcare_plus.User.Role;
 import com.ubam.dentcare_plus.User.RoleRepository;
 import com.ubam.dentcare_plus.User.User;
@@ -23,6 +25,8 @@ public class AuthService {
     private final UserRepository userRepository;
     @Autowired
     private final RoleRepository roleRepository;
+    @Autowired
+    private final ClienteRepository clienteRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -48,6 +52,12 @@ public class AuthService {
                         .role(userRole)
                         .build();
         userRepository.save(user);
+
+        Cliente cliente = Cliente.builder()
+                                .user(user)
+                                .fechaNacimiento(request.getFechaNacimiento())
+                                .build();
+        clienteRepository.save(cliente);
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
