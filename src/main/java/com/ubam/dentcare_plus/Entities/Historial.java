@@ -38,7 +38,7 @@ public class Historial {
     private String tratamiento;
     @Column(name = "Historial_Recomendaciones")
     private String recomendaciones;
-    @Column(name = "Historial_FechaConsulta")
+    @Column(name = "Historial_FechaCons")
     @org.hibernate.annotations.CreationTimestamp
     LocalDateTime fechaConsulta;
 }

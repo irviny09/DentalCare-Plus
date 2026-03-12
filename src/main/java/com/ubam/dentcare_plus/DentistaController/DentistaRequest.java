@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DentistaRequest {
     Integer userId;
-    Integer dentistaId;
     String diagnostico;
     String tratamiento;
     String recomendacion;
-    Date fechaConsulta;
 }
