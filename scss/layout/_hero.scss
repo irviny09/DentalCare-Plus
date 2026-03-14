@@ -1,0 +1,41 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.hero {
+    background-image: url('../img/dentista.jpg');
+    background-size: cover;          
+    background-position: center;     
+    height: 80vh;                    
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .overlay {
+        background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); 
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.hero-contenido {
+    color: white;
+    z-index: 10; 
+
+    h1 {
+        font-size: 4rem;
+        margin: 0;
+        span { color: aqua; } 
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .btn-primary{
+        @include m.boton(aqua, v.$negro);
+    }
+}

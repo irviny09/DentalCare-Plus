@@ -24,6 +24,7 @@ body {
   font-size: 2rem;
   min-width: 100vh;
   width: 100%;
+  background-color: #001529;
 }
 body.overflow-hidden {
   overflow: hidden;
@@ -74,87 +75,284 @@ body > section {
   padding: 10rem 0;
 }
 
-.header {
-  background-color: #000000;
-  padding: 0.2rem;
+body {
   margin: 0;
-  width: 100%;
-}
-.header h1 {
-  margin: 0;
+  padding: 0;
 }
 
-.header-contenedor {
+.header {
+  background-color: #001529;
+  width: 100%;
+}
+.header .header-contenedor {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 0.5rem 0;
 }
 
-.titulo {
+.logo-container .logo-svg {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+.nav-menu {
   display: flex;
-  flex-direction: column;
+  list-style: none;
+  gap: 2rem;
   margin: 0;
+  padding: 0;
 }
-.titulo .titulo__principal,
-.titulo .titulo__parrafo {
+.nav-menu li a {
+  text-decoration: none;
   color: #FFFFFF;
-}
-.titulo .titulo__principal {
   font-weight: bold;
-  font-size: 6rem;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+.nav-menu li a:hover {
   color: aqua;
 }
-.titulo .titulo__parrafo {
-  font-style: italic;
-  font-size: 3rem;
+.nav-menu .btn-destacado a {
+  background-color: aqua;
+  color: #001529;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.nav-menu .btn-destacado a:hover {
+  background-color: #FFFFFF;
 }
 
-.nav-principal a {
-  margin: 0 0.7rem;
-  color: white;
-  font-size: 2rem;
-}
-.nav-principal a:hover {
-  font-size: 2.5rem;
-  color: blue;
-}
-
-.imagen {
+.hero {
+  background-image: url("../img/dentista.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
   position: relative;
-  min-height: 50rem;
-  max-height: 70rem;
-  overflow: hidden;
-}
-.imagen .overlay {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
 }
-.imagen img {
-  display: block;
+.hero .overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 50rem;
-  object-fit: cover;
-  object-position: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.contenido-imagen {
+.hero-contenido {
+  color: white;
   z-index: 10;
 }
-.contenido-imagen h2 {
-  color: #FFFFFF;
-  font-size: 7rem;
+.hero-contenido h1 {
+  font-size: 4rem;
   margin: 0;
 }
-.contenido-imagen p {
+.hero-contenido h1 span {
+  color: aqua;
+}
+.hero-contenido p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.hero-contenido .btn-primary {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
+  background-color: aqua;
+  color: #000000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.hero-contenido .btn-primary:hover {
+  background-color: rgb(0, 216.75, 216.75);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.hero-contenido .btn-primary:active {
+  transform: translateY(0);
+}
+
+.beneficios {
+  padding: 5rem 0;
+}
+.beneficios__heading {
+  text-align: center;
+  margin-bottom: 4rem;
   color: #FFFFFF;
-  font-size: 2.4rem;
-  font-weight: 700;
+}
+.beneficios__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .beneficios__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.beneficio {
+  text-align: center;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+.beneficio:hover {
+  transform: translateY(-5px);
+}
+.beneficio__icono svg {
+  width: 60px;
+  height: 60px;
+  fill: #40E0D0;
+  margin-bottom: 2rem;
+}
+.beneficio p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #475569;
+}
+.beneficio p strong {
+  display: block;
+  color: #001529;
+  margin-bottom: 0.5rem;
+}
+
+.servicios {
+  padding: 5rem 0;
+}
+.servicios__heading {
+  text-align: center;
   margin: 0;
+  color: #FFFFFF;
+}
+.servicios__heading h2 {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+.servicios__heading p {
+  font-size: 2.5rem;
+  color: #475569;
+  margin-bottom: 4rem;
+}
+.servicios__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .servicios__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.servicio {
+  text-align: center;
+  padding-bottom: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+.servicio:hover {
+  transform: translateY(-5px);
+}
+.servicio__imagen img {
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-bottom: 2rem;
+  height: 25rem;
+}
+.servicio p {
+  font-size: 1.9rem;
+  line-height: 1.5;
+  color: #475569;
+}
+.servicio p strong {
+  display: block;
+  color: #001529;
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  background-color: #1e293b;
+  padding-bottom: 15rem;
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.widget__heading {
+  color: #FFFFFF;
+  padding-top: 3rem;
+  border-bottom: 2px solid #40E0D0;
+  margin-bottom: 2rem;
+}
+.widget__heading h3 {
+  font-size: 4rem;
+  margin: 0;
+}
+.widget__logo {
+  width: 20rem;
+  margin: 3rem auto;
+}
+.widget p {
+  color: #475569;
+  font-size: 1.2rem;
+  text-align: justify;
+  padding-top: 1.5rem;
+}
+
+.nosotros {
+  margin-bottom: 5rem;
+}
+.nosotros__heading {
+  color: #FFFFFF;
+  padding-top: 3rem;
+}
+.nosotros__contenido {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .nosotros__contenido {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+}
+.nosotros__contenido p {
+  color: #475569;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -28,4 +28,6 @@ public class Servicios {
     private String descripcion;
     @Column(name = "Servicio_Precio")
     private Float precio;
+    @Column(name = "Servicio_ImagenUrl")
+    private String imagen;
 }

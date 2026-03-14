@@ -1,0 +1,55 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.beneficios {
+    padding: 5rem 0;
+
+    &__heading {
+        text-align: center;
+        margin-bottom: 4rem;
+        color: v.$blanco;
+    }
+
+    &__grid {
+        @include m.grid(1, 3rem); 
+        list-style: none;
+        padding: 0;
+
+        @include m.tablet {
+            @include m.grid(3, 4rem); 
+        }
+    }
+}
+
+.beneficio {
+    text-align: center;
+    padding: 2rem;
+    background-color: v.$blanco;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &__icono {
+        svg {
+            width: 60px;
+            height: 60px;
+            fill: v.$aqua; 
+            margin-bottom: 2rem;
+        }
+    }
+
+    p {
+        font-size: 1.6rem;
+        line-height: 1.5;
+        color: v.$gris-texto;
+        
+        strong {
+            display: block; 
+            color: v.$azulOscuro;
+            margin-bottom: 0.5rem;
+        }
+    }
+}

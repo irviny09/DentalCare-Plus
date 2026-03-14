@@ -1,4 +1,4 @@
-package com.ubam.dentcare_plus.DentalCare;
+package com.ubam.dentcare_plus.PublicController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
