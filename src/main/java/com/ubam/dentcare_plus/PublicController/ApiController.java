@@ -19,7 +19,7 @@ public class ApiController {
     
     private final PublicService publicService;
 
-    @GetMapping("/servicios")
+    @GetMapping("/show-servicios")
     public ResponseEntity<List<ServiciosResponse>> showServicios(){
         return ResponseEntity.ok(publicService.showServicios());
     }

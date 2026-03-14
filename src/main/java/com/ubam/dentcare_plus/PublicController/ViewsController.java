@@ -8,6 +8,22 @@ public class ViewsController {
     
     @GetMapping("/")
     public String index(){
-        return "index";
+        return "public/index";
+    }
+    @GetMapping("/nosotros")
+    public String nosotros(){
+        return "public/nosotros";
+    }
+    @GetMapping("/servicios")
+    public String servicios(){
+        return "public/servicios";
+    }
+    @GetMapping("/login")
+    public String login(){
+        return "public/login";
+    }
+    @GetMapping("/registro")
+    public String registro(){
+        return "public/registro";
     }
 }

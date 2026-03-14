@@ -1,4 +1,4 @@
-export const urlServicio = "http://localhost:8080/public/servicios";
+export const urlServicio = "http://localhost:8080/public/show-servicios";
 
 window.addEventListener('load' , () =>{
     const parent = document.querySelector("#Services");
@@ -21,7 +21,7 @@ export const createCard = async(lista , parent) => {
         parent.innerHTML += `
             <li class="servicio">
                 <div class="servicio__imagen">
-                    <img src="../static${element.imagen}" alt="${element.imagen}">
+                    <img src="${element.imagen}" alt="${element.imagen}">
                 </div>
                 <p><strong>${element.name}:</strong> ${element.descripcion}</p>
             </li>

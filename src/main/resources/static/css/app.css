@@ -352,7 +352,146 @@ body {
   }
 }
 .nosotros__contenido p {
+  color: #FFFFFF;
+}
+
+.login-page {
+  background-color: #F4F7F6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  width: 95%;
+  max-width: 90rem;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 768px) {
+  .login-card {
+    flex-direction: row;
+  }
+}
+.login-card__info {
+  background-color: #001529;
+  color: #FFFFFF;
+  padding: 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .login-card__info {
+    width: 40%;
+  }
+}
+.login-card__info h2 {
+  margin-top: 2rem;
+  font-size: 2.4rem;
+}
+.login-card__info p {
+  opacity: 0.8;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+.login-card__form {
+  padding: 4rem;
+}
+@media (min-width: 768px) {
+  .login-card__form {
+    width: 60%;
+  }
+}
+.login-card__form h3 {
+  color: #001529;
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.campo {
+  margin-bottom: 2rem;
+}
+.campo label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #001529;
+}
+.campo input {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 0.5rem;
+  outline: none;
+}
+.campo input:focus {
+  border-color: #40E0D0;
+}
+
+.login-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.login-card__actions .btn-primary {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background-color: #40E0D0;
+  color: #001529;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.login-card__actions .btn-primary:hover {
+  background-color: rgb(34.1837837838, 210.6162162162, 192.972972973);
+  color: #001529;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.login-card__actions .btn-primary:active {
+  transform: translateY(0);
+}
+.login-card__actions .btn-primary {
+  width: 100%;
+}
+.login-card__actions .enlace {
+  text-align: center;
   color: #475569;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+.login-card__actions .enlace:hover {
+  color: #001529;
+  text-decoration: underline;
+}
+
+.alerta--error {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.4rem;
 }
 
 /*# sourceMappingURL=app.css.map */
