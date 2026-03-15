@@ -1,6 +1,7 @@
 package com.ubam.dentcare_plus.Repositories;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ubam.dentcare_plus.Entities.CitaCompletaView;
+import com.ubam.dentcare_plus.UsuarioController.ActivityResponse;
 
 public interface CitaCompletaRepository extends JpaRepository<CitaCompletaView, Integer>{
     
@@ -17,4 +19,7 @@ public interface CitaCompletaRepository extends JpaRepository<CitaCompletaView, 
     @Modifying
     @Query(value = "UPDATE tbl_rel_citas c SET c.Cita_EstatusId = :estatusId WHERE c.CitaId = :citaId", nativeQuery = true)
     void updateStatusCita(@Param("estatusId") Integer estatusId , @Param("citaId") Integer citaId);
+
+    @Query(value = "select Cita_Fecha, Cita_CostoFinal,Servicio_Nombre,	Estatus_Nombre from v_citascompletas where ClienteId = :clienteId" , nativeQuery = true)
+    List<ActivityResponse> getActivity(@Param("clienteId") Integer clienteId);
 }

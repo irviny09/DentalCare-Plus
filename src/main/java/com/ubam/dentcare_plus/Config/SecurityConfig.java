@@ -33,6 +33,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("Administrador")
                         .requestMatchers("/dentista/**").hasAuthority("Dentista")
+                        .requestMatchers("/cliente/actividad").hasAuthority("Cliente")
+                        .requestMatchers("/cliente/dashboard").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> 
                         sessionManager

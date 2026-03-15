@@ -13,8 +13,8 @@ formLogin.addEventListener('submit' , async (e)=>{
             body : JSON.stringify(data)
         })
         const result = await response.json();
-        localStorage.setItem('token_dentalcare', result.token);
-        console.log("Token guardado");
+        document.cookie = `token_dentalcare=${result.token}; path=/; max-age=86400; SameSite=Strict`;
+        window.location.href = ("/cliente/dashboard");
     } catch (error) {
         console.log("Error: ", error);
     }
