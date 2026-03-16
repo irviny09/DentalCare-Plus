@@ -1,72 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:replace="fragments :: head-comun"></th:block>
     <title>Dashboard | DentCare Plus</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="dashboard-body">
 
     <div class="dashboard">
-        <aside class="sidebar">
-            <div class="sidebar__logo">
-                <img th:src="@{/img/logo.svg}" alt="DentCare Logo">
-            </div>
-
-            <nav class="sidebar__nav">
-                <a th:href="@{/paciente/dashboard}" class="activo">
-                    <i class='bx bxs-dashboard'></i> Inicio
-                </a>
-                <a th:href="@{/paciente/citas}">
-                    <i class='bx bxs-calendar'></i> Mis Citas
-                </a>
-                <a th:href="@{/paciente/historial}">
-                    <i class='bx bxs-folder-open'></i> Historial Clínico
-                </a>
-                <a th:href="@{/paciente/pagos}">
-                    <i class='bx bxs-credit-card'></i> Pagos
-                </a>
-                <a th:href="@{/logout}" class="sidebar__logout">
-                    <i class='bx bx-log-out'></i> Cerrar Sesión
-                </a>
-            </nav>
-        </aside>
+        
+        <aside th:replace="fragments :: aside"></aside>
 
         <main class="main-content">
             <header class="main-content__header">
-                <h1>Hola,Paciente</span> 👋</h1>
+                <h1>Hola, <span th:text="${nombre}">Cliente</span> </h1>
                 <p>Bienvenido de nuevo a DentCare Plus.</p>
             </header>
 
             <section class="grid-stats">
                 <div class="card card--destacada">
                     <div class="card__icon"><i class='bx bxs-bell'></i></div>
-                    <div class="card__info">
+                    <div class="card__info" id="cita_container">
                         <h3>Próxima Cita</h3>
                         <p class="card__dato">15 Mar, 10:00 AM</p>
                         <p class="card__sub">Dr. Irvin Márquez</p>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card__icon"><i class='bx bxs-virus'></i></div>
-                    <div class="card__info">
-                        <h3>Tratamiento</h3>
-                        <p class="card__dato">Ortodoncia</p>
-                        <div class="progreso-bar">
-                            <div class="progreso-bar__relleno" style="width: 65%;"></div>
-                        </div>
-                        <p class="card__sub">65% completado</p>
-                    </div>
-                </div>
+               
 
                 <div class="card">
                     <div class="card__icon"><i class='bx bxs-wallet'></i></div>
                     <div class="card__info">
                         <h3>Saldo Pendiente</h3>
-                        <p class="card__dato">$1,200.00</p>
+                        <p class="card__dato" id="saldo">$1,200.00</p>
                         <a href="#" class="enlace-pago">Pagar ahora</a>
                     </div>
                 </div>
@@ -85,18 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/03/2026</td>
-                                <td>Limpieza Dental</td>
-                                <td><span class="status status--completado">Completado</span></td>
-                                <td><a href="#" class="btn-ver">Ver Receta</a></td>
-                            </tr>
-                            <tr>
-                                <td>15/03/2026</td>
-                                <td>Ajuste Brackets</td>
-                                <td><span class="status status--pendiente">Pendiente</span></td>
-                                <td><a href="#" class="btn-ver">Confirmar</a></td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>

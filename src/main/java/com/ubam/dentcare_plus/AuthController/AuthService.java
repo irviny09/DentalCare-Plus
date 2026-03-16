@@ -1,5 +1,7 @@
 package com.ubam.dentcare_plus.AuthController;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -56,6 +58,7 @@ public class AuthService {
         Cliente cliente = Cliente.builder()
                                 .user(user)
                                 .fechaNacimiento(request.getFechaNacimiento())
+                                .saldoPendiente(new BigDecimal(0))
                                 .build();
         clienteRepository.save(cliente);
 

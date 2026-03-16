@@ -1,5 +1,6 @@
 package com.ubam.dentcare_plus.Entities;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import com.ubam.dentcare_plus.User.User;
@@ -33,4 +34,6 @@ public class Cliente {
     private User user;
     @Column(name = "Cliente_FechaNacimiento")
     private Date fechaNacimiento;
+    @Column(name = "Cliente_SaldoPendiente")
+    private BigDecimal saldoPendiente;
 }
