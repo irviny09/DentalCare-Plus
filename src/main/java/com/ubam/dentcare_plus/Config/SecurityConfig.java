@@ -1,4 +1,4 @@
-package com.ubam.dentcare_plus.Config;
+package com.ubam.dentcare_plus.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

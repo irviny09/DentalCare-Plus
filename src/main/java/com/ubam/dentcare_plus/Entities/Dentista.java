@@ -1,6 +1,4 @@
-package com.ubam.dentcare_plus.Entities;
-
-import com.ubam.dentcare_plus.User.User;
+package com.ubam.dentcare_plus.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

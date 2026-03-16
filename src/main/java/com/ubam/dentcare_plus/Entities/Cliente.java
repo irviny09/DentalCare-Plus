@@ -1,10 +1,7 @@
-package com.ubam.dentcare_plus.Entities;
+package com.ubam.dentcare_plus.entities;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-
-import com.ubam.dentcare_plus.User.User;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
