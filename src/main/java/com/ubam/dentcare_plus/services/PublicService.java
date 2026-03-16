@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ubam.dentcare_plus.Repositories.ServicioRepository;
 import com.ubam.dentcare_plus.dto.publico.ServiciosResponse;
 import com.ubam.dentcare_plus.entities.Servicios;
+import com.ubam.dentcare_plus.repositories.ServicioRepository;
 
 import lombok.RequiredArgsConstructor;
 

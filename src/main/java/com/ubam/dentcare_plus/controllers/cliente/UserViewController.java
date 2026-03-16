@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ubam.dentcare_plus.Repositories.ClienteRepository;
 import com.ubam.dentcare_plus.entities.Cliente;
+import com.ubam.dentcare_plus.repositories.ClienteRepository;
 
 import lombok.RequiredArgsConstructor;
 

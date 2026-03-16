@@ -1,4 +1,4 @@
-package com.ubam.dentcare_plus.Repositories;
+package com.ubam.dentcare_plus.repositories;
 
 import java.util.Optional;
 

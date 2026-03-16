@@ -2,6 +2,10 @@ package com.ubam.dentcare_plus.entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +16,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -37,10 +43,11 @@ public class Citas {
     @ManyToOne
     @JoinColumn(name = "Cita_EstatusId")
     private Estatus estatus;
+    @JsonFormat(pattern = "H:mm[:ss]")
     @Column(name = "Cita_Fecha")
-    private Date fecha;
+    private LocalDate citaFecha;
     @Column(name = "Cita_Hora")
-    private Time hora;
+    private LocalTime hora;
     @Column(name = "Cita_CostoFinal")
     private Float costoFinal;
     @Column(name = "Cita_Notas")

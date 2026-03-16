@@ -9,7 +9,7 @@
 
     <div class="dashboard">
         
-        <aside th:replace="fragments :: aside"></aside>
+        <aside th:replace="fragments :: aside('inicio')"></aside>
 
         <main class="main-content">
             <header class="main-content__header">
@@ -59,6 +59,6 @@
             </section>
         </main>
     </div>
-<script th:src="@{/js/dashboard.js}"></script>
+<script type="module" th:src="@{/js/dashboard.js}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
-package com.ubam.dentcare_plus.Repositories;
+package com.ubam.dentcare_plus.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import com.ubam.dentcare_plus.dto.cliente.ActividadRecienteDTO;
 import com.ubam.dentcare_plus.dto.cliente.CitaSiguienteDTO;
 import com.ubam.dentcare_plus.entities.CitaCompletaView;
+import com.ubam.dentcare_plus.entities.Citas;
 
 public interface CitaCompletaRepository extends JpaRepository<CitaCompletaView, Integer>{
     
@@ -25,4 +27,6 @@ public interface CitaCompletaRepository extends JpaRepository<CitaCompletaView, 
 
     @Query(value = "select Cita_Fecha , Cita_Hora , nombreDentista from v_citascompletas where ClienteId = :clienteId AND Cita_Fecha >= NOW() AND Estatus_Nombre != 'Cancelada' order by Cita_Fecha asc limit 1;", nativeQuery = true)
     List<CitaSiguienteDTO> getCitaSiguiente(@Param("clienteId") Integer clienteId);
+
+    
 }

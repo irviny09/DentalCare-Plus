@@ -663,4 +663,154 @@ body {
   display: none;
 }
 
+.booking-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.booking-container .booking-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+}
+.booking-container .booking-card .booking-header {
+  margin-bottom: 2rem;
+}
+.booking-container .booking-card .booking-header h2 {
+  color: #0a192f;
+  margin: 0;
+  font-size: 1.8rem;
+}
+.booking-container .booking-card .booking-header p {
+  color: #4a5568;
+  margin-top: 0.5rem;
+}
+
+.booking-form .form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 600px) {
+  .booking-form .form-row {
+    flex-direction: column;
+  }
+}
+.booking-form .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+.booking-form .form-group label {
+  font-weight: 550;
+  color: #0a192f;
+  margin-bottom: 0.6rem;
+  font-size: 1.8rem;
+}
+.booking-form .form-group select, .booking-form .form-group input[type=date], .booking-form .form-group textarea {
+  padding: 0.8rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  transition: border-color 0.2s;
+}
+.booking-form .form-group select:focus, .booking-form .form-group input[type=date]:focus, .booking-form .form-group textarea:focus {
+  outline: none;
+  border-color: #00b4d8;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  background: #f7fafc;
+  padding: 1.2rem;
+  border-radius: 8px;
+  min-height: 100px;
+}
+.time-grid .time-btn {
+  background: #FFFFFF;
+  border: 1.5px solid #00b4d8;
+  color: #00b4d8;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.time-grid .time-btn:hover {
+  background: rgba(0, 180, 216, 0.1);
+}
+.time-grid .time-btn.selected {
+  background: #00b4d8;
+  color: #FFFFFF;
+}
+.time-grid .time-btn.occupied {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+  color: #a0aec0;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.form-actions .btn-primary {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background-color: #0a192f;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.form-actions .btn-primary:hover {
+  background-color: rgb(8.5, 21.25, 39.95);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.form-actions .btn-primary:active {
+  transform: translateY(0);
+}
+.form-actions .btn-secondary {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background-color: #e2e8f0;
+  color: #475569;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.form-actions .btn-secondary:hover {
+  background-color: rgb(179.9295454545, 195.4613636364, 216.1704545455);
+  color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.form-actions .btn-secondary:active {
+  transform: translateY(0);
+}
+
 /*# sourceMappingURL=app.css.map */

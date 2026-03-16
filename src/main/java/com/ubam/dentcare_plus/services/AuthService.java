@@ -9,9 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ubam.dentcare_plus.Repositories.ClienteRepository;
-import com.ubam.dentcare_plus.Repositories.RoleRepository;
-import com.ubam.dentcare_plus.Repositories.UserRepository;
 import com.ubam.dentcare_plus.dto.auth.TokenDTO;
 import com.ubam.dentcare_plus.entities.Cliente;
 import com.ubam.dentcare_plus.entities.Role;
@@ -19,6 +16,9 @@ import com.ubam.dentcare_plus.entities.User;
 import com.ubam.dentcare_plus.dto.auth.LoginDTO;
 import com.ubam.dentcare_plus.dto.auth.RegistroDTO;
 import com.ubam.dentcare_plus.jwt.JwtService;
+import com.ubam.dentcare_plus.repositories.ClienteRepository;
+import com.ubam.dentcare_plus.repositories.RoleRepository;
+import com.ubam.dentcare_plus.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

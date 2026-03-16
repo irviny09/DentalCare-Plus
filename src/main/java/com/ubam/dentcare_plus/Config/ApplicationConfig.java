@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.ubam.dentcare_plus.Repositories.UserRepository;
+import com.ubam.dentcare_plus.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

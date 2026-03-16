@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
     cargarSaldoPendiente();
 });
 
-const cargarActividad = async () => {
+export const cargarActividad = async (mostrarTodo = false) => {
     const tableActividad = document.getElementById("table-actividad");
     const tbody = tableActividad.querySelector("tbody");
     const response = await fetch(urlActividad, {
@@ -41,7 +41,7 @@ const cargarActividad = async () => {
     if (!response.ok) throw new Error("No se pudo obtener la actividad");
     const actividades = await response.json();
     tbody.innerHTML = "";
-    const recientes = actividades.slice(0, 3);
+    const recientes = mostrarTodo ? actividades : actividades.slice(0,3);
     recientes.forEach(actividad => {
         tbody.innerHTML += `
             <tr>
@@ -64,8 +64,8 @@ const cargarCitaSiguiente = async () => {
         }
     })
     if (!response.ok) throw new Error("Error al obtener citas");
-    data = await response.json();
-    fecha = formatearFecha(`${data[0].fecha}T${data[0].hora}`);
+    let data = await response.json();
+    let fecha = formatearFecha(`${data[0].fecha}T${data[0].hora}`);
     console.log(fecha)
     containerCita.innerHTML += `
         <h3>Próxima Cita</h3>

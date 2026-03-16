@@ -30,23 +30,29 @@
         </div>
     </header>
 
-    <aside th:fragment="aside" class="sidebar">
+    <aside th:fragment="aside(moduloActivo)" class="sidebar">
             <div class="sidebar__logo">
-                <img th:src="@{/img/logo.svg}" alt="DentCare Logo">
+                <img 
+                th:src="@{/img/logo.svg}"
+                alt="DentCare Logo">
             </div>
 
             <nav class="sidebar__nav">
-                <a th:href="@{/cliente/dashboard}" class="activo">
+                <a 
+                th:class="${moduloActivo == 'inicio' ? 'activo' : ''}"
+                th:href="@{/cliente/dashboard}"
+                class="activo">
                     <i class='bx bxs-dashboard'></i> Inicio
                 </a>
-                <a th:href="@{/cliente/citas}">
+                <a 
+                th:class="${moduloActivo == 'citas' ? 'activo' : ''}"
+                th:href="@{/cliente/citas}">
                     <i class='bx bxs-calendar'></i> Mis Citas
                 </a>
-                <a th:href="@{/paciente/historial}">
+                <a
+                th:class="${moduloActivo == 'historial' ? 'activo' : ''}"
+                th:href="@{/paciente/historial}">
                     <i class='bx bxs-folder-open'></i> Historial Clínico
-                </a>
-                <a th:href="@{/paciente/pagos}">
-                    <i class='bx bxs-credit-card'></i> Pagos
                 </a>
                 <a th:href="@{/logout}" class="sidebar__logout">
                     <i class='bx bx-log-out'></i> Cerrar Sesión

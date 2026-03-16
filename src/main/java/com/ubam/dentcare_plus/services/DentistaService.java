@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.ubam.dentcare_plus.Repositories.CitaCompletaRepository;
-import com.ubam.dentcare_plus.Repositories.ClienteRepository;
-import com.ubam.dentcare_plus.Repositories.DentistaRepository;
-import com.ubam.dentcare_plus.Repositories.HistorialRepository;
 import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.dto.dentista.StatusDTO;
@@ -17,6 +13,10 @@ import com.ubam.dentcare_plus.entities.CitaCompletaView;
 import com.ubam.dentcare_plus.entities.Cliente;
 import com.ubam.dentcare_plus.entities.Dentista;
 import com.ubam.dentcare_plus.entities.Historial;
+import com.ubam.dentcare_plus.repositories.CitaCompletaRepository;
+import com.ubam.dentcare_plus.repositories.ClienteRepository;
+import com.ubam.dentcare_plus.repositories.DentistaRepository;
+import com.ubam.dentcare_plus.repositories.HistorialRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

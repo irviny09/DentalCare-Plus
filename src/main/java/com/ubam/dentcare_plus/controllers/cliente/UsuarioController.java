@@ -6,11 +6,19 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ubam.dentcare_plus.dto.cliente.ActividadRecienteDTO;
+import com.ubam.dentcare_plus.dto.cliente.CitaNuevaDTO;
 import com.ubam.dentcare_plus.dto.cliente.CitaSiguienteDTO;
+import com.ubam.dentcare_plus.dto.cliente.EspecialistasDTO;
+import com.ubam.dentcare_plus.dto.cliente.FechaDisponibilidadDTO;
+import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
+import com.ubam.dentcare_plus.dto.cliente.ServiciosDTO;
+import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.services.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +42,22 @@ public class UsuarioController {
     @GetMapping("/saldoPendiente")
     public ResponseEntity<BigDecimal> showSaldo(){
         return ResponseEntity.ok(usuarioService.showSaldo());
+    }
+    @PostMapping("/horasOcupadas")
+    public ResponseEntity<List<HorasOcupadasDTO>> showHorasOcupadas(@RequestBody FechaDisponibilidadDTO fechaDisponibilidadDTO){
+        return ResponseEntity.ok(usuarioService.getFechasOcupadas(fechaDisponibilidadDTO));
+    }
+    @GetMapping("/dentistas")
+    public ResponseEntity<List<EspecialistasDTO>> getEspecialistas(){
+        return ResponseEntity.ok(usuarioService.getEspecialistas());
+    }
+    @GetMapping("/servicios")
+    public ResponseEntity<List<ServiciosDTO>> getServicios(){
+        return ResponseEntity.ok(usuarioService.getServicios());
+    }
+    @PostMapping("/cita")
+    public ResponseEntity<MessageResponse> createNewCita(@RequestBody CitaNuevaDTO citaNuevaDTO){
+        return ResponseEntity.ok(usuarioService.createNewCita(citaNuevaDTO));
     }
     
 }

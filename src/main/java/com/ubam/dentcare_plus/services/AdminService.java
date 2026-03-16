@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ubam.dentcare_plus.Repositories.DentistaRepository;
-import com.ubam.dentcare_plus.Repositories.RoleRepository;
-import com.ubam.dentcare_plus.Repositories.UserRepository;
 import com.ubam.dentcare_plus.dto.admin.DentistaRegistration;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.entities.Dentista;
 import com.ubam.dentcare_plus.entities.Role;
 import com.ubam.dentcare_plus.entities.User;
+import com.ubam.dentcare_plus.repositories.DentistaRepository;
+import com.ubam.dentcare_plus.repositories.RoleRepository;
+import com.ubam.dentcare_plus.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

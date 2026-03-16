@@ -21,5 +21,5 @@ public class Estatus {
     @Column(name = "EstatusId")
     private Integer id;
     @Column(name = "Estatus_Nombre")
-    private Integer nombre;
+    private String nombre;
 }
