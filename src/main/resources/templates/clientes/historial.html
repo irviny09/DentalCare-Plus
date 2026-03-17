@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:replace="fragments :: head-comun"></th:block>
+    <title>Historial Medico | Dashboard</title>
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard">
+        <aside th:replace="~{fragments :: aside('historial')}"></aside>
+        <main class="main-content">
+            <header class="main-content__header">
+                <h1> Mi Historial Medico </h1>
+            </header>
+
+            <section class="medical-history">
+
+                <header class="medical-history__header">
+                    <h2>Expediente Clínico Digital</h2>
+                    <p>Consulta la evolución de tus tratamientos en DentCare Plus</p>
+                </header>
+
+                <div class="timeline" id="container-timeline">
+
+                    <article class="timeline__item">
+                        <span class="timeline__date">16 de Marzo, 2026</span>
+                        <div class="timeline__card">
+                            <h3>Limpieza Dental Profunda</h3>
+
+                            <div class="details">
+                                <p>
+                                    <strong>Especialista</strong>
+                                    Dr. Arriaga Islas
+                                </p>
+                                <p>
+                                    <strong>Diagnóstico y Observaciones</strong>
+                                    Se detectó acumulación de sarro en zonas interdentales. Se procedió a realizar
+                                    profilaxis ultrasónica. Encías presentan leve inflamación.
+                                </p>
+                            </div>
+
+                            <div class="details">
+                                <p>
+                                    <strong>Tratamiento</strong>
+                                    Limpieza, pulido coronario y aplicación de flúor.
+                                </p>
+                                <p>
+                                    <strong>Indicaciones</strong>
+                                    Uso de hilo dental diario y enjuague con clorhexidina por 7 días.
+                                </p>
+                            </div>
+
+                            <button class="btn-informe">Descargar Receta</button>
+                        </div>
+                    </article>
+
+                    <article class="timeline__item">
+                        <span class="timeline__date">02 de Febrero, 2026</span>
+                        <div class="timeline__card">
+                            <h3>Extracción de Tercer Molar</h3>
+
+                            <div class="details">
+                                <p>
+                                    <strong>Especialista</strong>
+                                    Dra. Elena Sánchez
+                                </p>
+                                <p>
+                                    <strong>Diagnóstico</strong>
+                                    Molar 3.8 impactado con ligera reabsorción en el 3.7.
+                                </p>
+                            </div>
+
+                            <div class="details">
+                                <p>
+                                    <strong>Resultado Cirugía</strong>
+                                    Procedimiento exitoso. Sutura con hilo reabsorbible. No hubo sangrado excesivo.
+                                </p>
+                            </div>
+
+                            <button class="btn-informe">Ver Radiografía</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/historial.js}"></script>
+</body>
+
+</html>

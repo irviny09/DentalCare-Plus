@@ -813,4 +813,148 @@ body {
   transform: translateY(0);
 }
 
+.medical-history {
+  width: 95%;
+  max-width: 120rem;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  padding-top: 5rem;
+}
+.medical-history__header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.medical-history__header h2 {
+  color: #001529;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.medical-history__header p {
+  color: #475569;
+  font-size: 1.8rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 5rem;
+  }
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 0.4rem;
+  background-color: #F4F7F6;
+}
+@media (min-width: 768px) {
+  .timeline::before {
+    left: 2.2rem;
+  }
+}
+.timeline__item {
+  position: relative;
+  margin-bottom: 4rem;
+}
+.timeline__item::after {
+  content: "";
+  position: absolute;
+  left: -2.1rem;
+  top: 0.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background-color: #40E0D0;
+  border: 0.3rem solid #FFFFFF;
+  box-shadow: 0 0 0 0.2rem #F4F7F6;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .timeline__item::after {
+    left: -3.5rem;
+  }
+}
+.timeline__date {
+  font-weight: bold;
+  color: #001529;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.timeline__card {
+  background-color: #F4F7F6;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+.timeline__card:hover {
+  background-color: #FFFFFF;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  transform: translateX(1rem);
+}
+.timeline__card h3 {
+  text-transform: capitalize;
+  color: #1e293b;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.timeline__card .details {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .timeline__card .details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+.timeline__card .details p {
+  text-transform: capitalize;
+  color: #475569;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+.timeline__card .details p strong {
+  color: #001529;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.timeline__card .btn-informe {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background-color: #001529;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.timeline__card .btn-informe:hover {
+  background-color: rgb(0, 17.85, 34.85);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.timeline__card .btn-informe:active {
+  transform: translateY(0);
+}
+.timeline__card .btn-informe {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  margin-left: 2rem;
+}
+
 /*# sourceMappingURL=app.css.map */

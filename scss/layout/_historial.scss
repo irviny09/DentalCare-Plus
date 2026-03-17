@@ -1,0 +1,129 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m; 
+
+.medical-history {
+    @include m.contenedor;
+    font-family: v.$fuente_principal;
+    padding-top: 5rem;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 5rem;
+
+        h2 {
+            color: v.$azulOscuro;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: v.$gris-texto;
+            font-size: 1.8rem;
+        }
+    }
+}
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+
+    @include m.tablet {
+        padding-left: 5rem;
+    }
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        bottom: 0;
+        width: 0.4rem;
+        background-color: v.$gris-oscuro;
+
+        @include m.tablet {
+            left: 2.2rem;
+        }
+    }
+
+    &__item {
+        position: relative;
+        margin-bottom: 4rem;
+
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: -2.1rem;
+            top: 0.8rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 50%;
+            background-color: v.$aqua;
+            border: 0.3rem solid v.$blanco;
+            box-shadow: 0 0 0 0.2rem v.$gris-oscuro;
+            z-index: 1;
+
+            @include m.tablet {
+                left: -3.5rem;
+            }
+        }
+    }
+
+    &__date {
+        font-weight: bold;
+        color: v.$azulOscuro;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    &__card {
+        background-color: v.$gris-oscuro;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: v.$blanco;
+            box-shadow: 0 1rem 2rem rgba(v.$negro, 0.1);
+            transform: translateX(1rem);
+        }
+
+        h3 {
+            text-transform: capitalize;
+            color: v.$negro-suave;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .details {
+            @include m.grid(1, 2rem); 
+
+            @include m.tablet {
+                @include m.grid(2, 3rem); 
+            }
+
+            p {
+                text-transform: capitalize;
+                color: v.$gris-texto;
+                font-size: 1.6rem;
+                line-height: 1.5;
+
+                strong {
+                    color: v.$azulOscuro;
+                    display: block;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+
+        .btn-informe {
+            @include m.boton(v.$azulOscuro, v.$blanco);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            margin-left: 2rem;
+        }
+    }
+}

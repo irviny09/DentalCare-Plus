@@ -12,20 +12,26 @@ import com.ubam.dentcare_plus.dto.cliente.ActividadRecienteDTO;
 import com.ubam.dentcare_plus.dto.cliente.CitaNuevaDTO;
 import com.ubam.dentcare_plus.dto.cliente.CitaSiguienteDTO;
 import com.ubam.dentcare_plus.dto.cliente.EspecialistasDTO;
+import com.ubam.dentcare_plus.dto.cliente.EstudiosDTO;
 import com.ubam.dentcare_plus.dto.cliente.FechaDisponibilidadDTO;
+import com.ubam.dentcare_plus.dto.cliente.HistorialMedicoDTO;
 import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
 import com.ubam.dentcare_plus.dto.cliente.ServiciosDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
+import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
 import com.ubam.dentcare_plus.entities.Citas;
 import com.ubam.dentcare_plus.entities.Cliente;
 import com.ubam.dentcare_plus.entities.Dentista;
 import com.ubam.dentcare_plus.entities.Estatus;
+import com.ubam.dentcare_plus.entities.Estudios;
+import com.ubam.dentcare_plus.entities.Historial;
 import com.ubam.dentcare_plus.entities.Servicios;
 import com.ubam.dentcare_plus.repositories.CitaCompletaRepository;
 import com.ubam.dentcare_plus.repositories.CitaRepository;
 import com.ubam.dentcare_plus.repositories.ClienteRepository;
 import com.ubam.dentcare_plus.repositories.DentistaRepository;
 import com.ubam.dentcare_plus.repositories.EstatusRepository;
+import com.ubam.dentcare_plus.repositories.HistorialRepository;
 import com.ubam.dentcare_plus.repositories.ServicioRepository;
 
 import jakarta.transaction.Transactional;
@@ -41,6 +47,7 @@ public class UsuarioService {
     private final DentistaRepository dentistaRepository;
     private final ServicioRepository servicioRepository;
     private final EstatusRepository estatusRepository;
+    private final HistorialRepository historialRepository;
 
     public List<ActividadRecienteDTO> showActivity(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -118,6 +125,29 @@ public class UsuarioService {
                     .build();
         citaRepository.save(cita);
         return MessageResponse.builder().message("Cita creada con exito").build();
+    }
+
+    public List<HistorialMedicoDTO> getHistorialMedico(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Cliente cliente = clienteRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Cliente no esta"));
+        List<Historial> historial = historialRepository.findHistorialConEstudios(cliente.getId());
+        List<HistorialMedicoDTO> lista = new ArrayList<>();
+        for (var element : historial) {
+            List<EstudiosDTO> estudios = element.getEstudios().stream()
+                                            .map(e -> new EstudiosDTO(e.getId(), e.getNombre(), e.getRutaUrl()))
+                                            .toList();
+            HistorialMedicoDTO hMedicoDTO = HistorialMedicoDTO.builder()
+                                            .historialId(element.getId())
+                                            .fecha(element.getFechaConsulta())
+                                            .tratamiento(element.getTratamiento())
+                                            .doctor(element.getDentista().getUser().getName() + " " + element.getDentista().getUser().getApellido())
+                                            .diagnostico(element.getDiagnostico())
+                                            .recomendaciones(element.getRecomendaciones())
+                                            .estudios(estudios)
+                                            .build();
+            lista.add(hMedicoDTO);
+        }
+        return lista;
     }
 }
 

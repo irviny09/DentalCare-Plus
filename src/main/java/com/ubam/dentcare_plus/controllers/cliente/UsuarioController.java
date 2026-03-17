@@ -16,6 +16,7 @@ import com.ubam.dentcare_plus.dto.cliente.CitaNuevaDTO;
 import com.ubam.dentcare_plus.dto.cliente.CitaSiguienteDTO;
 import com.ubam.dentcare_plus.dto.cliente.EspecialistasDTO;
 import com.ubam.dentcare_plus.dto.cliente.FechaDisponibilidadDTO;
+import com.ubam.dentcare_plus.dto.cliente.HistorialMedicoDTO;
 import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
 import com.ubam.dentcare_plus.dto.cliente.ServiciosDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
@@ -58,6 +59,10 @@ public class UsuarioController {
     @PostMapping("/cita")
     public ResponseEntity<MessageResponse> createNewCita(@RequestBody CitaNuevaDTO citaNuevaDTO){
         return ResponseEntity.ok(usuarioService.createNewCita(citaNuevaDTO));
+    }
+    @GetMapping("/historial-medico")
+    public ResponseEntity<List<HistorialMedicoDTO>> showHistorial(){
+        return ResponseEntity.ok(usuarioService.getHistorialMedico());
     }
     
 }

@@ -33,4 +33,8 @@ public class UserViewController {
     public String citas(){
         return "clientes/citas";
     }
+    @GetMapping("/historial")
+    public String historial(){
+        return "clientes/historial";
+    }
 }
