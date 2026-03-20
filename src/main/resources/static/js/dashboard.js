@@ -30,6 +30,7 @@ window.addEventListener('load', () => {
 
 export const cargarActividad = async (mostrarTodo = false) => {
     const tableActividad = document.getElementById("table-actividad");
+    if(!tableActividad) return;
     const tbody = tableActividad.querySelector("tbody");
     const response = await fetch(urlActividad, {
         method: "get",
@@ -56,6 +57,7 @@ export const cargarActividad = async (mostrarTodo = false) => {
 
 const cargarCitaSiguiente = async () => {
     const containerCita = document.getElementById("cita_container");
+    if(!containerCita) return;
     containerCita.innerHTML = "";
     const response = await fetch(urlSiguiente, {
         method: "get",
@@ -76,6 +78,7 @@ const cargarCitaSiguiente = async () => {
 
 const cargarSaldoPendiente = async () => {
     const containerSaldo = document.getElementById("saldo");
+    if(!containerSaldo) return;
     containerSaldo.innerHTML = "";
     const response = await fetch(urlSaldo, {
         method: "get",

@@ -133,3 +133,6 @@ const createNewCita = async (e) => {
     
     alert("Cita agendada exitosamente");
 }
+
+
+window.actualizarHoras = actualizarHoras;
