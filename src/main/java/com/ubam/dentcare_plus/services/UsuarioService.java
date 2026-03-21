@@ -157,5 +157,6 @@ public class UsuarioService {
         citaRepository.save(cita);
         return MessageResponse.builder().message("Cita Actualizada Correctamente").build();
     }
+
 }
 

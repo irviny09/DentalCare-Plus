@@ -1,9 +1,10 @@
 const acciones = {
-    "Pendiente": { texto: 'Confirmar', clase: 'status--pendiente', idSiguiente: 2 },
-    "Confirmada": { texto: 'Cancelar', clase: 'status--confirmada', idSiguiente: 4 },
-    "Completada": { texto: 'Ver receta', clase: 'status--completado', idSiguiente: 0 },
-    "Cancelada": { texto: '', clase: 'status--cancelada', idSiguiente: 0 }
+    "Pendiente": { texto: 'Confirmar', clase: 'status--pendiente', tipo: 'update', idSiguiente: 2 },
+    "Confirmada": { texto: 'Cancelar', clase: 'status--confirmada', tipo: 'update', idSiguiente: 4 },
+    "Completada": { texto: 'Ver receta', clase: 'status--completado', tipo: 'receta', idSiguiente: null },
+    "Cancelada": { texto: '', clase: 'status--cancelada', tipo: 'ninguno', idSiguiente: null }
 }
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const token = value.split(`; ${name}=`);
@@ -51,7 +52,7 @@ export const cargarActividad = async (mostrarTodo = false) => {
             <td>${actividad.fecha}</td>
                 <td>${actividad.nombre}</td>
                 <td><span class="status ${acciones[actividad.estatus].clase}">${actividad.estatus}</span></td>
-                <td><a href="#" onClick="updateStatus(${actividad.id} , ${acciones[actividad.estatus].idSiguiente})" class="btn-ver ${acciones[actividad.estatus].clase}">${acciones[actividad.estatus].texto}</a></td>
+                <td>${generarBoton(actividad)}</td>
             </tr>
         `;
     });
@@ -68,7 +69,8 @@ const updateStatus = async (idCita, idStatus) => {
             body: JSON.stringify({ id: idCita, status: idStatus })
         })
 
-        if(!response.ok) return;
+        if (!response.ok) throw new Error("cita no actualizada");
+        console.log(response);
 
         alert("Cita actualizada correctamente");
         cargarActividad(true);
@@ -76,6 +78,27 @@ const updateStatus = async (idCita, idStatus) => {
         console.log(error);
     }
 
+}
+
+const generarBoton = (actividad) => {
+    const accion = acciones[actividad.estatus];
+    console.log(accion);
+    if (accion.tipo === 'update') {
+        return `<a href="#" 
+                   onclick="updateStatus(${actividad.id}, ${accion.idSiguiente})" 
+                   class="btn-ver ${accion.clase}">
+                   ${accion.texto}
+                </a>`;
+    }
+
+    if (accion.tipo === 'receta') {
+        return `<a href="/cliente/historial?id=${actividad.id}" 
+                   class="btn-ver ${accion.clase}">
+                   ${accion.texto}
+                </a>`;
+    }
+
+    return ''; 
 }
 
 const cargarCitaSiguiente = async () => {
