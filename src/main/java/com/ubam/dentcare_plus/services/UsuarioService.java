@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +15,7 @@ import com.ubam.dentcare_plus.dto.cliente.EstudiosDTO;
 import com.ubam.dentcare_plus.dto.cliente.FechaDisponibilidadDTO;
 import com.ubam.dentcare_plus.dto.cliente.HistorialMedicoDTO;
 import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
+import com.ubam.dentcare_plus.dto.cliente.UpdateCitaDTO;
 import com.ubam.dentcare_plus.dto.cliente.ServiciosDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
@@ -36,7 +36,7 @@ import com.ubam.dentcare_plus.repositories.ServicioRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.var;
+
 
 @Service
 @RequiredArgsConstructor
@@ -148,6 +148,14 @@ public class UsuarioService {
             lista.add(hMedicoDTO);
         }
         return lista;
+    }
+
+    public MessageResponse updateStatusCita(UpdateCitaDTO idRequest){
+        Citas cita = citaRepository.findById(idRequest.getId()).orElseThrow(() -> new RuntimeException("Cita not found"));
+        Estatus estatus = estatusRepository.findById(idRequest.getStatus()).orElseThrow(() -> new RuntimeException("Status nod found"));
+        cita.setEstatus(estatus);
+        citaRepository.save(cita);
+        return MessageResponse.builder().message("Cita Actualizada Correctamente").build();
     }
 }
 

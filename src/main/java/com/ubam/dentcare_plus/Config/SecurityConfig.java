@@ -34,11 +34,19 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAuthority("Administrador")
                         .requestMatchers("/dentista/**").hasAuthority("Dentista")
                         .requestMatchers("/cliente/actividad").hasAuthority("Cliente")
-                        .requestMatchers("/cliente/dashboard").permitAll()
+                        .requestMatchers("/cliente/dashboard", "/dentista/dashboard").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> 
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((request , response , authException) -> {
+                                response.sendRedirect("/login");
+                        })
+                        .accessDeniedHandler((request, response , authException) -> {
+                                response.sendRedirect("/login");
+                        })
                 )
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFiler, UsernamePasswordAuthenticationFilter.class)

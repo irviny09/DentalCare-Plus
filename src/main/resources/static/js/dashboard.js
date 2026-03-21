@@ -1,8 +1,8 @@
 const acciones = {
-    "Pendiente": { texto: 'Confirmar', clase: 'status--pendiente' },
-    "Confirmada": { texto: 'Cancelar', clase: 'status--confirmada' },
-    "Completada": { texto: 'Ver receta', clase: 'status--completado' },
-    "Cancelada": { texto: '', clase: 'status--cancelada' }
+    "Pendiente": { texto: 'Confirmar', clase: 'status--pendiente', idSiguiente: 2 },
+    "Confirmada": { texto: 'Cancelar', clase: 'status--confirmada', idSiguiente: 4 },
+    "Completada": { texto: 'Ver receta', clase: 'status--completado', idSiguiente: 0 },
+    "Cancelada": { texto: '', clase: 'status--cancelada', idSiguiente: 0 }
 }
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -20,6 +20,7 @@ if (!token) {
 const urlActividad = "/cliente/actividad";
 const urlSiguiente = "/cliente/citaSiguiente";
 const urlSaldo = "/cliente/saldoPendiente";
+const urlActualizar = "/cliente/actualizar-cita";
 
 
 window.addEventListener('load', () => {
@@ -30,7 +31,7 @@ window.addEventListener('load', () => {
 
 export const cargarActividad = async (mostrarTodo = false) => {
     const tableActividad = document.getElementById("table-actividad");
-    if(!tableActividad) return;
+    if (!tableActividad) return;
     const tbody = tableActividad.querySelector("tbody");
     const response = await fetch(urlActividad, {
         method: "get",
@@ -42,22 +43,44 @@ export const cargarActividad = async (mostrarTodo = false) => {
     if (!response.ok) throw new Error("No se pudo obtener la actividad");
     const actividades = await response.json();
     tbody.innerHTML = "";
-    const recientes = mostrarTodo ? actividades : actividades.slice(0,3);
+    const recientes = mostrarTodo ? actividades : actividades.slice(0, 3);
     recientes.forEach(actividad => {
         tbody.innerHTML += `
             <tr>
-                <td>${actividad.fecha}</td>
+              
+            <td>${actividad.fecha}</td>
                 <td>${actividad.nombre}</td>
                 <td><span class="status ${acciones[actividad.estatus].clase}">${actividad.estatus}</span></td>
-                <td><a href="#" class="btn-ver ${acciones[actividad.estatus].clase}">${acciones[actividad.estatus].texto}</a></td>
+                <td><a href="#" onClick="updateStatus(${actividad.id} , ${acciones[actividad.estatus].idSiguiente})" class="btn-ver ${acciones[actividad.estatus].clase}">${acciones[actividad.estatus].texto}</a></td>
             </tr>
         `;
     });
 }
 
+const updateStatus = async (idCita, idStatus) => {
+    try {
+        const response = await fetch(urlActualizar, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ id: idCita, status: idStatus })
+        })
+
+        if(!response.ok) return;
+
+        alert("Cita actualizada correctamente");
+        cargarActividad(true);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 const cargarCitaSiguiente = async () => {
     const containerCita = document.getElementById("cita_container");
-    if(!containerCita) return;
+    if (!containerCita) return;
     containerCita.innerHTML = "";
     const response = await fetch(urlSiguiente, {
         method: "get",
@@ -78,7 +101,7 @@ const cargarCitaSiguiente = async () => {
 
 const cargarSaldoPendiente = async () => {
     const containerSaldo = document.getElementById("saldo");
-    if(!containerSaldo) return;
+    if (!containerSaldo) return;
     containerSaldo.innerHTML = "";
     const response = await fetch(urlSaldo, {
         method: "get",
@@ -102,3 +125,5 @@ const formatearFecha = (fecha) => {
 }
 
 const capitalizeString = (palabra) => { return palabra.replace(/\b\w/g, match => match.toUpperCase()) }
+
+window.updateStatus = updateStatus;

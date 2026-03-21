@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ubam.dentcare_plus.dto.cliente.ActividadRecienteDTO;
@@ -19,6 +20,7 @@ import com.ubam.dentcare_plus.dto.cliente.FechaDisponibilidadDTO;
 import com.ubam.dentcare_plus.dto.cliente.HistorialMedicoDTO;
 import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
 import com.ubam.dentcare_plus.dto.cliente.ServiciosDTO;
+import com.ubam.dentcare_plus.dto.cliente.UpdateCitaDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.services.UsuarioService;
 
@@ -63,6 +65,10 @@ public class UsuarioController {
     @GetMapping("/historial-medico")
     public ResponseEntity<List<HistorialMedicoDTO>> showHistorial(){
         return ResponseEntity.ok(usuarioService.getHistorialMedico());
+    }
+    @PostMapping("/actualizar-cita")
+    public ResponseEntity<MessageResponse> updateCita(@RequestBody UpdateCitaDTO updateCitaDTO){
+        return ResponseEntity.ok(usuarioService.updateStatusCita(updateCitaDTO));
     }
     
 }

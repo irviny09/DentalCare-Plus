@@ -22,7 +22,7 @@ public interface CitaCompletaRepository extends JpaRepository<CitaCompletaView, 
     @Query(value = "UPDATE tbl_rel_citas c SET c.Cita_EstatusId = :estatusId WHERE c.CitaId = :citaId", nativeQuery = true)
     void updateStatusCita(@Param("estatusId") Integer estatusId , @Param("citaId") Integer citaId);
 
-    @Query(value = "select Cita_Fecha, Cita_CostoFinal,Servicio_Nombre,	Estatus_Nombre from v_citascompletas where ClienteId = :clienteId order by Cita_Fecha desc" , nativeQuery = true)
+    @Query(value = "select CitaId,Cita_Fecha, Cita_CostoFinal,Servicio_Nombre,	Estatus_Nombre from v_citascompletas where ClienteId = :clienteId order by Cita_Fecha desc" , nativeQuery = true)
     List<ActividadRecienteDTO> getActivity(@Param("clienteId") Integer clienteId);
 
     @Query(value = "select Cita_Fecha , Cita_Hora , nombreDentista from v_citascompletas where ClienteId = :clienteId AND Cita_Fecha >= NOW() AND Estatus_Nombre != 'Cancelada' order by Cita_Fecha asc limit 1;", nativeQuery = true)
