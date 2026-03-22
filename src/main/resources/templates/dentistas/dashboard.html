@@ -1,10 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <th:block th:replace="head-comun"></th:block>
     <title>Dashboard | Dentista</title>
+    <th:block th:replace="~{fragments :: head-comun}"></th:block>
 </head>
-<body>
-    <aside th:replace="aside(inicio, dentista)"></aside>
+
+<body class="dashboard-body">
+    <div class="dashboard">
+        <aside th:replace="~{fragments :: aside('inicio', 'dentista')}"></aside>
+        <main class="main-content">
+
+            <header class="main-content__header">
+                <h1>Bienvenido,Dr. <span th:text="${nombre}">Doctor</span> </h1>
+                <p>Bienvenido de nuevo a DentCare Plus.</p>
+            </header>
+
+            <section class="grid-stats">
+                <div class="card card--destacada">
+                    <div class="card__icon"><i class='bx bxs-bell'></i></div>
+                    <div class="card__info" id="cita_container">
+                        <h3>Citas Hoy</h3>
+                        <p class="card__dato" th:text="${totalDay}">7</p>
+                        <p class="card__sub"><span th:text="${pendientes}"></span> Pendientes</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__icon"><i class='bx bxs-wallet'></i></div>
+                    <div class="card__info">
+                        <h3>Pacientes de este mes</h3>
+                        <p class="card__dato" id="saldo" th:text="${total}">34</p>
+                        <p class="card__sub">+<span th:text="${diferencia}"></span> vs mes anterior</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__icon"><i class='bx bxs-wallet'></i></div>
+                    <div class="card__info">
+                        <h3>Citas Canceladas</h3>
+                        <p class="card__dato" th:text="${canceladas}">5</p>
+                        <p class="card__sub">Hoy</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__icon"><i class='bx bxs-wallet'></i></div>
+                    <div class="card__info">
+                        <h3>Por confirmar</h3>
+                        <p class="card__dato" th:text="${pendientesManana}">3</p>
+                        <p class="card__sub">Requieren accion</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-info">
+                <div class="card card--tabla">
+                    <div class="card__header">
+                        <h3>Citas de hoy</h3>
+                    </div>
+                    <div class="tabla-contenedor">
+                        <table id="table-citas-hoy">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Paciente</th>
+                                    <th>Tratamiento</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>9:00</td>
+                                    <td>Carlos Mendez</td>
+                                    <td>Limpieza dental</td>
+                                    <td><span class="status status--completada">Completada</span></td>
+                                </tr>
+                                <tr>
+                                    <td>9:00</td>
+                                    <td>Carlos Mendez</td>
+                                    <td>Limpieza dental</td>
+                                    <td>Completada</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card card--destacada">
+                        <div class="card__info">
+                        <h3>Proxima cita</h3>
+                        <p class="card__dato">Ana Torres</p>
+                        <p class="card__sub">10:00am · Extraccion Molar</p>
+                    </div>
+                    </div>
+                    <div class="card">Accesos Rapidos</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script th:src="@{/js/auth.js}"></script>
 </body>
 </html>

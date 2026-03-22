@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
     <th:block th:fragment="head-comun">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" th:href="@{/css/app.css}">
     </th:block>
-</head>
 
 <body>
 
@@ -30,35 +28,42 @@
         </div>
     </header>
 
-    <aside th:fragment="aside(moduloActivo)" class="sidebar">
-            <div class="sidebar__logo">
-                <img 
-                th:src="@{/img/logo.svg}"
-                alt="DentCare Logo">
-            </div>
+    <aside th:fragment="aside(moduloActivo, tipo)" class="sidebar">
+        <div class="sidebar__logo">
+            <img th:src="@{/img/logo.svg}" alt="DentCare Logo">
+        </div>
 
-            <nav class="sidebar__nav">
-                <a 
-                th:class="${moduloActivo == 'inicio' ? 'activo' : ''}"
-                th:href="@{/cliente/dashboard}"
-                class="activo">
-                    <i class='bx bxs-dashboard'></i> Inicio
-                </a>
-                <a 
-                th:class="${moduloActivo == 'citas' ? 'activo' : ''}"
-                th:href="@{/cliente/citas}">
-                    <i class='bx bxs-calendar'></i> Mis Citas
-                </a>
-                <a
-                th:class="${moduloActivo == 'historial' ? 'activo' : ''}"
-                th:href="@{/cliente/historial}">
-                    <i class='bx bxs-folder-open'></i> Historial Clínico
-                </a>
-                <a th:href="@{/logout}" id="btn-logout" class="sidebar__logout">
-                    <i class='bx bx-log-out'></i> Cerrar Sesión
-                </a>
-            </nav>
-        </aside>
+        <nav class="sidebar__nav">
+            <!-- Inicio -->
+            <a th:href="${tipo == 'cliente' ? '/cliente/dashboard' : '/dentista/dashboard'}"
+                th:classappend="${moduloActivo == 'inicio' ? ' activo' : ''}">
+                <i class='bx bxs-dashboard'></i> Inicio
+            </a>
+
+            <!-- Citas -->
+            <a th:href="${tipo == 'cliente' ? '/cliente/citas' : '/dentista/citas'}"
+                th:classappend="${moduloActivo == 'citas' ? ' activo' : ''}">
+                <i class='bx bxs-calendar'></i>
+                <span th:text="${tipo == 'cliente' ? 'Mis Citas' : 'Citas Programadas'}"></span>
+            </a>
+
+            <!-- Solo cliente -->
+            <a th:if="${tipo == 'cliente'}" th:href="@{/cliente/historial}"
+                th:classappend="${moduloActivo == 'historial' ? ' activo' : ''}">
+                <i class='bx bxs-folder-open'></i> Historial Clínico
+            </a>
+
+            <!-- Solo dentista -->
+            <a th:if="${tipo == 'dentista'}" th:href="@{/dentista/pacientes}"
+                th:classappend="${moduloActivo == 'pacientes' ? ' activo' : ''}">
+                <i class='bx bxs-group'></i> Pacientes
+            </a>
+
+            <a th:href="@{/login}" id="btn-logout" class="sidebar__logout">
+                <i class='bx bx-log-out'></i> Cerrar Sesión
+            </a>
+        </nav>
+    </aside>
 
     <footer th:fragment="footer" class="footer">
         <ul class="footer__grid">

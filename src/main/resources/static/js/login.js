@@ -14,7 +14,12 @@ formLogin.addEventListener('submit' , async (e)=>{
         })
         const result = await response.json();
         document.cookie = `token_dentalcare=${result.token}; path=/; max-age=86400; SameSite=Strict`;
-        window.location.href = ("/cliente/dashboard");
+        const rutas = {
+            "Cliente" : "/cliente/dashboard",
+            "Dentista" : "/dentista/dashboard",
+            "Administrador" : ""
+        }
+        window.location.href = rutas[result.role] ?? "/";
     } catch (error) {
         console.log("Error: ", error);
     }
