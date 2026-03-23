@@ -11,7 +11,9 @@ import com.ubam.dentcare_plus.dto.cliente.HorasOcupadasDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasCanceladasDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPendientesDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDTO;
+import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDetalleDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorMesDTO;
+import com.ubam.dentcare_plus.dto.dentista.NextPacienteDTO;
 import com.ubam.dentcare_plus.entities.Citas;
 
 public interface CitaRepository extends JpaRepository<Citas, Integer> {
@@ -32,9 +34,15 @@ public interface CitaRepository extends JpaRepository<Citas, Integer> {
             SUM(CASE WHEN trc.Cita_EstatusId = 2 THEN 1 ELSE 0 END) AS pendientes
             FROM tbl_rel_citas trc
             WHERE trc.Cita_DentistaId = :dentistaId
-            AND DATE(trc.Cita_Fecha) = CURDATE();
+            AND DATE(trc.Cita_Fecha) = CURDATE()
+            AND trc.Cita_EstatusId != 4;
             """, nativeQuery = true)
     CitasPorDiaDTO getCitasPorDia(@Param("dentistaId") int dentistaId);
+
+    @Query(value = """
+                call sp_showCitasByDay(:dentistaId, :fecha);
+            """, nativeQuery = true)
+    List<CitasPorDiaDetalleDTO> getCitasPorDiaDetalle(@Param("dentistaId") int dentistaId , @Param("fecha") LocalDate fecha);
 
     @Query(value = """
             SELECT
@@ -53,4 +61,9 @@ public interface CitaRepository extends JpaRepository<Citas, Integer> {
             AND DATE(trc.Cita_Fecha) = CURDATE() + 1;
             """, nativeQuery = true)
     CitasPendientesDTO getCitasPendientes(@Param("dentistaId") int dentistaId);
+
+    @Query(value = """
+                    call sp_showNextPaciente(:dentistaId)
+                    """, nativeQuery = true)
+    NextPacienteDTO getNextPaciente(@Param("dentistaId") int dentistaId);    
 }

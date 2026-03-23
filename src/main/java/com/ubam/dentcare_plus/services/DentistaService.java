@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import com.ubam.dentcare_plus.dto.dentista.CitasCanceladasDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPendientesDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDTO;
+import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDetalleDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorMesDTO;
+import com.ubam.dentcare_plus.dto.dentista.DiaRequest;
 import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
+import com.ubam.dentcare_plus.dto.dentista.NextPacienteDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.dto.dentista.StatusDTO;
 import com.ubam.dentcare_plus.entities.CitaCompletaView;
@@ -79,27 +82,33 @@ public class DentistaService {
     }
 
     public CitasPorMesDTO getCitas(){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Dentista dentista = dentistaRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Dentista not found"));
-        return citaRepository.getCitasPorMes(dentista.getId());
+        return citaRepository.getCitasPorMes(gDentista().getId());
     }
 
     public CitasPorDiaDTO getCitasDay(){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Dentista dentista = dentistaRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Dentista not found"));
-        return citaRepository.getCitasPorDia(dentista.getId());
+        return citaRepository.getCitasPorDia(gDentista().getId());
     }
 
     public CitasCanceladasDTO getCitasCanceladas(){
-        String usernmae = SecurityContextHolder.getContext().getAuthentication().getName();
-        Dentista dentista = dentistaRepository.findByEmail(usernmae).orElseThrow(() -> new RuntimeException("Dentista not found"));
-        return citaRepository.getCitasCanceladas(dentista.getId());
+        return citaRepository.getCitasCanceladas(gDentista().getId());
     }
 
     public CitasPendientesDTO getCitasPendientes(){
+        CitasPendientesDTO citasPendientesDTO = citaRepository.getCitasPendientes(gDentista().getId());
+        return citasPendientesDTO;
+    }
+
+    public List<CitasPorDiaDetalleDTO> getDetailsCita(DiaRequest diaRequest){
+        return citaRepository.getCitasPorDiaDetalle(gDentista().getId(), diaRequest.getFecha());
+    }
+
+    public NextPacienteDTO gPaciente(){
+        return citaRepository.getNextPaciente(gDentista().getId());
+    }
+
+    public Dentista gDentista(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Dentista dentista = dentistaRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Dentista not found"));
-        return citaRepository.getCitasPendientes(dentista.getId());
+        return dentistaRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Not Found"));
     }
     
 }

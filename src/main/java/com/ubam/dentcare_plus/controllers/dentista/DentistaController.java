@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDetalleDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorMesDTO;
+import com.ubam.dentcare_plus.dto.dentista.DiaRequest;
 import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.dto.dentista.StatusDTO;
@@ -43,5 +45,10 @@ public class DentistaController {
     @GetMapping("/getCitasMes")
     public ResponseEntity<CitasPorMesDTO> getCitasMes(){
         return ResponseEntity.ok(dentistaService.getCitas());
+    }
+
+    @PostMapping("/getCitasDay")
+    public ResponseEntity<List<CitasPorDiaDetalleDTO>> getDetailsCitas(@RequestBody DiaRequest diaRequest){
+        return ResponseEntity.ok(dentistaService.getDetailsCita(diaRequest));
     }
 }
