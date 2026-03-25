@@ -1,0 +1,80 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+.btn-primary {
+    background-color: v.$aqua;
+    color: v.$azulOscuro; 
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-family: v.$fuente_principal;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background-color: darken(v.$aqua, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(v.$aqua, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.search-bar {
+    margin-bottom: 2rem;
+    
+    input {
+        width: 100%;
+        max-width: 400px;
+        padding: 0.9rem 1.2rem;
+        border: 2px solid v.$gris-oscuro;
+        border-radius: 10px;
+        font-family: v.$fuente_principal;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        outline: none;
+
+        &::placeholder {
+            color: v.$gris-texto;
+            opacity: 0.6;
+        }
+
+        &:focus {
+            border-color: v.$aqua;
+            box-shadow: 0 0 0 4px rgba(v.$aqua, 0.1);
+            background-color: v.$blanco;
+        }
+    }
+}
+
+.btn-icon {
+    background: v.$gris-oscuro;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background 0.2s;
+    font-size: 1.1rem;
+
+    &:hover {
+        background-color: darken(v.$gris-oscuro, 5%);
+    }
+
+    &.view:hover {
+        color: v.$azulOscuro;
+    }
+
+    &.edit:hover {
+        color: v.$aqua;
+    }
+}
+.patients-card {
+    padding: 2rem !important; 
+}

@@ -13,8 +13,9 @@ formRegister.addEventListener('submit' , async (e)=>{
             body : JSON.stringify(data)
         })
         const result = await response.json();
+        if(!result.token) return;
         localStorage.setItem('token_dentalcare', result.token);
-        console.log("Token guardado");
+        window.location.href = "/cliente/dashboard";
     } catch (error) {
         console.log("Error: ", error);
     }
