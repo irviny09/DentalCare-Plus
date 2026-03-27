@@ -1,4 +1,4 @@
-const urlLogin = "http://localhost:8080/auth/register";
+const urlLogin = "/auth/register";
 const formRegister = document.getElementById("registroForm");
 
 formRegister.addEventListener('submit' , async (e)=>{

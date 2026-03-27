@@ -1,4 +1,4 @@
-export const urlServicio = "http://localhost:8080/public/show-servicios";
+export const urlServicio = "/public/show-servicios";
 
 window.addEventListener('load' , () =>{
     const parent = document.querySelector("#Services");
