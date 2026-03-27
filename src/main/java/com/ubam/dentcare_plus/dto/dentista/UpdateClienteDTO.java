@@ -6,14 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class PacientesDTO {
-    Integer clienteId;
-    Integer userId;
-    String expediente;
-    String paciente;
-    String contacto;
-    Boolean estado;
+public class UpdateClienteDTO {
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private Boolean estado;
 }

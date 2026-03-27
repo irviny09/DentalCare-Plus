@@ -42,6 +42,107 @@
             </section>
         </main>
     </div>
+
+    <!-- Modal Ver Historial -->
+    <div id="modalVerHistorial" class="modal-overlay">
+        <div class="modal-content modal-lg">
+            <header class="modal-header">
+                <h2>Historial Clínico de Paciente</h2>
+                <button class="btn-close" onclick="cerrarModal('modalVerHistorial')">✕</button>
+            </header>
+            <div class="modal-body">
+                <div class="table-container appointments-table-wrapper" style="max-height: 400px; overflow-y: auto;">
+                    <table class="appointments-table history-table" id="table-historiales">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tratamiento</th>
+                                <th>Diagnóstico</th>
+                                <th>Doctor</th>
+                                <th>Estudios</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p id="empty-history" style="display: none; text-align: center; color: #666; padding: 20px; font-weight: 500;">No hay historial clínico previo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Historial -->
+    <div id="modalNuevoHistorial" class="modal-overlay">
+        <div class="modal-content modal-md">
+            <header class="modal-header">
+                <h2>Crear Nuevo Historial</h2>
+                <button class="btn-close" onclick="cerrarModal('modalNuevoHistorial')">✕</button>
+            </header>
+            <div class="modal-body">
+                <form id="form-nuevo-historial" class="premium-form">
+                    <input type="hidden" id="nh-cliente-id">
+                    <input type="hidden" id="nh-user-id">
+                    <div class="form-group">
+                        <label>Diagnóstico:</label>
+                        <textarea id="nh-diagnostico" required rows="2" placeholder="Describa el diagnóstico general"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tratamiento:</label>
+                        <textarea id="nh-tratamiento" required rows="2" placeholder="Procedimientos realizados"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Recomendaciones:</label>
+                        <textarea id="nh-recomendaciones" required rows="2" placeholder="Instrucciones post-consulta"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Estudios (Imágenes):</label>
+                        <input type="file" id="nh-estudios" multiple accept="image/*" class="form-control" style="background: transparent; color: white;">
+                    </div>
+                    <div class="form-actions row-buttons">
+                        <button type="button" class="btn-secondary" onclick="cerrarModal('modalNuevoHistorial')">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar Historial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Actualizar Cliente -->
+    <div id="modalUpdateCliente" class="modal-overlay">
+        <div class="modal-content modal-sm">
+            <header class="modal-header">
+                <h2>Modificar Datos del Paciente</h2>
+                <button class="btn-close" onclick="cerrarModal('modalUpdateCliente')">✕</button>
+            </header>
+            <div class="modal-body">
+                <form id="form-update-cliente" class="premium-form">
+                    <input type="hidden" id="uc-cliente-id">
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" id="uc-nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                        <input type="text" id="uc-apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono:</label>
+                        <input type="tel" id="uc-telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado:</label>
+                        <select id="uc-estado" class="form-control">
+                            <option value="true">Activo</option>
+                            <option value="false">Deshabilitado</option>
+                        </select>
+                    </div>
+                    <div class="form-actions row-buttons">
+                        <button type="button" class="btn-secondary" onclick="cerrarModal('modalUpdateCliente')">Cancelar</button>
+                        <button type="submit" class="btn-primary">Actualizar Paciente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <script th:src="@{/js/pacientes.js}"></script>
 </body>
 

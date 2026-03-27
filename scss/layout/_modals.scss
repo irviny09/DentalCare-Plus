@@ -1,0 +1,162 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+/* Overlay del Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+/* Contenido del Modal */
+.modal-content {
+    background: v.$blanco;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    
+    .show & {
+        transform: translateY(0) scale(1);
+    }
+
+    &.modal-lg { max-width: 800px; }
+    &.modal-md { max-width: 600px; }
+    &.modal-sm { max-width: 450px; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0,0,0, 0.05);
+    background: v.$blanco;
+    
+    h2 {
+        margin: 0;
+        color: v.$azulOscuro;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: v.$fuente_principal;
+    }
+
+    .btn-close {
+        background: rgba(0,0,0, 0.05);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        color: v.$azulOscuro;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        
+        &:hover {
+            background: rgba(v.$aqua, 0.2);
+            color: v.$azulOscuro;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Formularios Premium */
+.premium-form {
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: v.$azulOscuro;
+            font-weight: 600;
+            font-family: v.$fuente_principal;
+            font-size: 0.95rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid rgba(0,0,0, 0.08);
+            border-radius: 8px;
+            font-family: v.$fuente_principal;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+            background: rgba(0,0,0,0.02);
+
+            &:focus {
+                border-color: v.$aqua;
+                background: v.$blanco;
+                box-shadow: 0 0 0 3px rgba(v.$aqua, 0.1);
+            }
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    .row-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: v.$azulOscuro;
+    border: 2px solid rgba(0,0,0, 0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-family: v.$fuente_principal;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: rgba(0,0,0, 0.05);
+    }
+}
+
+.history-table {
+    width: 100%;
+    margin-top: 0 !important;
+    
+    th, td {
+        font-size: 0.95rem;
+        vertical-align: top;
+    }
+}

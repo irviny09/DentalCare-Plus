@@ -26,15 +26,15 @@ public class DentistaViewController {
 
         model.addAttribute("doctor" , dentistaService.gDentista().getUser().getName());
 
-        model.addAttribute("total", citasMes != null ? citasMes.getTotal() : 0);
-        model.addAttribute("diferencia", citasMes != null ? citasMes.getDiferencia() : 0);
+        model.addAttribute("total", (citasMes != null && citasMes.getTotal() != null) ? citasMes.getTotal() : 0);
+        model.addAttribute("diferencia", (citasMes != null && citasMes.getDiferencia() != null) ? citasMes.getDiferencia() : 0);
 
-        model.addAttribute("totalDay", citasDay != null ? citasDay.getTotal() : 0);
-        model.addAttribute("pendientes", citasDay != null ? citasDay.getPendientes() : 0);
+        model.addAttribute("totalDay", (citasDay != null && citasDay.getTotal() != null) ? citasDay.getTotal() : 0);
+        model.addAttribute("pendientes", (citasDay != null && citasDay.getPendientes() != null) ? citasDay.getPendientes() : 0);
 
-        model.addAttribute("canceladas", canceladas != null ? canceladas.getCanceladas() : 0);
+        model.addAttribute("canceladas", (canceladas != null && canceladas.getCanceladas() != null) ? canceladas.getCanceladas() : 0);
 
-        model.addAttribute("pendientesManana", pendientesManana != null ? pendientesManana.getPendientes() : 0);
+        model.addAttribute("pendientesManana", (pendientesManana != null && pendientesManana.getPendientes() != null) ? pendientesManana.getPendientes() : 0);
 
         model.addAttribute("namePaciente" , nextPaciente != null ? nextPaciente.getPaciente() : "");
         model.addAttribute("hourPaciente", nextPaciente != null ? nextPaciente.getHora() : "");

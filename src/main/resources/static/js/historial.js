@@ -133,9 +133,24 @@ const cargarHistorial = async () => {
             const imgData = canvas.toDataURL("image/png");
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: "portrait", unit: "px", format: "a4" });
+            
             const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
             const imgHeight = (canvas.height * pageWidth) / canvas.width;
-            doc.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
+            
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            doc.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
             doc.save(`receta-${tratamiento.toLowerCase().replace(/\s+/g, '-')}.pdf`);
             document.body.removeChild(recetaHTML);
         });
@@ -205,13 +220,32 @@ const cargarHistorial = async () => {
             `;
 
             document.body.appendChild(recetaHTML);
+            
+            // Wait a tiny bit to ensure DOM images start loading so html2canvas computes height right
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
             const canvas = await html2canvas(recetaHTML, { scale: 2, useCORS: true });
             const imgData = canvas.toDataURL("image/png");
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: "portrait", unit: "px", format: "a4" });
+            
             const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
             const imgHeight = (canvas.height * pageWidth) / canvas.width;
-            doc.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
+            
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            doc.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
             doc.save(`radiografia-${tratamiento.toLowerCase().replace(/\s+/g, '-')}.pdf`);
             document.body.removeChild(recetaHTML);
         });

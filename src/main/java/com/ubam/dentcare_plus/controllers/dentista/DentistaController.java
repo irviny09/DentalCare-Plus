@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.ubam.dentcare_plus.dto.cliente.HistorialMedicoDTO;
+import com.ubam.dentcare_plus.dto.dentista.UpdateClienteDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDetalleDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorMesDTO;
 import com.ubam.dentcare_plus.dto.dentista.DiaRequest;
@@ -30,7 +34,7 @@ public class DentistaController {
     private final DentistaService dentistaService;
 
     @PostMapping("/add-historial")
-    public ResponseEntity<MessageResponse> addHistorial(@RequestBody HistorialDTO request){
+    public ResponseEntity<MessageResponse> addHistorial(@ModelAttribute HistorialDTO request){
         return ResponseEntity.ok(dentistaService.addHistorial(request));
     }
 
@@ -62,5 +66,15 @@ public class DentistaController {
     @PostMapping("getPacientes")
     public ResponseEntity<PacientesDTO> getPaciente(@RequestBody IdRequest idRequest){
         return ResponseEntity.ok(dentistaService.getPacienteById(idRequest));
+    }
+
+    @GetMapping("/historiales/{clienteId}")
+    public ResponseEntity<List<HistorialMedicoDTO>> getHistorialesByCliente(@PathVariable Integer clienteId) {
+        return ResponseEntity.ok(dentistaService.getHistorialesByCliente(clienteId));
+    }
+
+    @PutMapping("/cliente/{clienteId}")
+    public ResponseEntity<MessageResponse> updateCliente(@PathVariable Integer clienteId, @RequestBody UpdateClienteDTO request) {
+        return ResponseEntity.ok(dentistaService.updateCliente(clienteId, request));
     }
 }
