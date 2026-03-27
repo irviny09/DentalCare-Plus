@@ -21,9 +21,9 @@ body {
     font-style: normal;
     color: v.$negro;
     font-size: 2rem;
-    min-width: 100vh;
+    min-height: 100vh;
     width: 100%;
-    background-color: #001529;
+    background-color: v.$azulOscuro;
 
     &.overflow-hidden {
         overflow: hidden;
