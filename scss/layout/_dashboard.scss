@@ -212,9 +212,11 @@
 
         .tabla-contenedor {
             overflow-x: auto;
+            width: 100%;
 
             table {
                 width: 100%;
+                min-width: 600px; /* Force scroll on small screens */
                 border-collapse: collapse;
                 table-layout: fixed;
 
