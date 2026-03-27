@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <th:block th:replace="fragments :: head-comun"></th:block>
+    <title>Dashboard | DentCare Plus</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard">
+        
+        <aside th:replace="~{fragments :: aside('inicio', 'cliente')}"></aside>
+
+        <main class="main-content">
+            <header class="main-content__header">
+                <h1>Hola, <span th:text="${nombre}">Cliente</span> </h1>
+                <p>Bienvenido de nuevo a DentCare Plus.</p>
+            </header>
+
+            <section class="grid-stats">
+                <div class="card card--destacada">
+                    <div class="card__icon"><i class='bx bxs-bell'></i></div>
+                    <div class="card__info" id="cita_container">
+                        <h3>Próxima Cita</h3>
+                        <p class="card__dato">15 Mar, 10:00 AM</p>
+                        <p class="card__sub">Dr. Irvin Márquez</p>
+                    </div>
+                </div>
+
+               
+
+                <div class="card">
+                    <div class="card__icon"><i class='bx bxs-wallet'></i></div>
+                    <div class="card__info">
+                        <h3>Saldo Pendiente</h3>
+                        <p class="card__dato" id="saldo">$1,200.00</p>
+                        <a href="#" class="enlace-pago">Pagar ahora</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recientes">
+                <h2>Actividad Reciente</h2>
+                <div class="tabla-contenedor">
+                    <table id="table-actividad">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tratamiento</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script th:src="@{/js/auth.js}"></script>
+<script type="module" th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

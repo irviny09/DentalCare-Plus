@@ -1,3 +1,18 @@
-.header{
-    background-color: blue;
-}
+@forward 'base/globals';
+@forward 'base/mixins';
+@forward 'base/variables';
+
+
+@forward 'layout/header';
+@forward 'layout/hero';
+@forward 'layout/beneficios';
+@forward 'layout/servicios';
+@forward 'layout/footer';
+@forward 'layout/nosotros';
+@forward 'layout/login';
+@forward 'layout/dashboard';
+@forward 'layout/formulario';
+@forward 'layout/historial';
+@forward 'layout/citas';
+@forward 'layout/pacientes';
+@forward 'layout/modals';

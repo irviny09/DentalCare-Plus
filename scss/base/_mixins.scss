@@ -1,0 +1,62 @@
+@use 'variables' as v;
+@use "sass:color";
+
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+@mixin contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+@mixin grid($columnas: 1, $gap: 5rem) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: $gap;
+}
+
+@mixin boton($bg-color: v.$azul, $text-color: v.$blanco) {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background-color: $bg-color;
+    color: $text-color;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    text-align: center;
+    border: none;
+    transition: all 0.3s ease; 
+    cursor: pointer;
+    font-size: 1.4rem;
+
+    &:hover {
+        background-color: color.scale($bg-color, $lightness: -15%);
+        color: $text-color;
+        transform: translateY(-2px); 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    &:active {
+        transform: translateY(0); 
+    }
+}

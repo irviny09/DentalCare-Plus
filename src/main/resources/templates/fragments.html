@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <th:block th:fragment="head-comun">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/app.css}">
+    </th:block>
+
+<body>
+
+    <header th:fragment="header" class="header">
+        <div class="contenedor header-contenedor">
+            <div class="logo-container">
+                <a th:href="@{/}">
+                    <img class="logo-svg" th:src="@{/img/logo.svg}" alt="logo dentcare">
+                </a>
+            </div>
+
+            <nav class="nav-principal">
+                <ul class="nav-menu">
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/servicios}">Servicios</a></li>
+                    <li><a th:href="@{/nosotros}">Quien Somos</a></li>
+                    <li class="btn-destacado"><a th:href="@{/login}">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <aside th:fragment="aside(moduloActivo, tipo)" class="sidebar">
+        <div class="sidebar__logo">
+            <img th:src="@{/img/logo.svg}" alt="DentCare Logo">
+        </div>
+
+        <nav class="sidebar__nav">
+            <!-- Inicio -->
+            <a th:href="${tipo == 'cliente' ? '/cliente/dashboard' : '/dentista/dashboard'}"
+                th:classappend="${moduloActivo == 'inicio' ? ' activo' : ''}">
+                <i class='bx bxs-dashboard'></i> Inicio
+            </a>
+
+            <!-- Citas -->
+            <a th:href="${tipo == 'cliente' ? '/cliente/citas' : '/dentista/citas'}"
+                th:classappend="${moduloActivo == 'citas' ? ' activo' : ''}">
+                <i class='bx bxs-calendar'></i>
+                <span th:text="${tipo == 'cliente' ? 'Mis Citas' : 'Citas Programadas'}"></span>
+            </a>
+
+            <!-- Solo cliente -->
+            <a th:if="${tipo == 'cliente'}" th:href="@{/cliente/historial}"
+                th:classappend="${moduloActivo == 'historial' ? ' activo' : ''}">
+                <i class='bx bxs-folder-open'></i> Historial Clínico
+            </a>
+
+            <!-- Solo dentista -->
+            <a th:if="${tipo == 'dentista'}" th:href="@{/dentista/pacientes}"
+                th:classappend="${moduloActivo == 'pacientes' ? ' activo' : ''}">
+                <i class='bx bxs-group'></i> Pacientes
+            </a>
+
+            <a th:href="@{/login}" id="btn-logout" class="sidebar__logout">
+                <i class='bx bx-log-out'></i> Cerrar Sesión
+            </a>
+        </nav>
+    </aside>
+
+    <footer th:fragment="footer" class="footer">
+        <ul class="footer__grid">
+            <div class="widget">
+                <div class="widget__logo">
+                    <img th:src="@{/img/logo.svg}" alt="logo dentcare">
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat adipisci laborum ipsam a dolorum
+                    quasi velit nobis placeat</p>
+            </div>
+            <div class="widget">
+                <div class="widget__heading">
+                    <h3>Nuestro servicio</h3>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, obcaecati officia. In, iusto
+                    quidem. Laborum facere reprehenderit consequatur molestias assumenda aperiam praesentium accusamus
+                    cumque, reiciendis dolores repellendus. Debitis, voluptate delectus.</p>
+            </div>
+            <div class="widget">
+                <div class="widget__heading">
+                    <h3>Contactanos</h3>
+                </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex repellat quod iusto molestiae minima
+                    corrupti sint accusamus minus doloremque ipsum, magnam molestias numquam possimus itaque vero,
+                    laborum tempore accusantium nostrum.</p>
+            </div>
+        </ul>
+    </footer>
+
+</body>
+
+</html>

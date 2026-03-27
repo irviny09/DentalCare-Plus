@@ -1,0 +1,111 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.login-page {
+    background-color: v.$gris-oscuro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 95%;
+    max-width: 90rem;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    background-color: v.$blanco;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    @include m.tablet {
+        flex-direction: row;
+    }
+
+    &__info {
+        background-color: v.$azulOscuro;
+        color: v.$blanco;
+        padding: 4rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include m.tablet {
+            width: 40%;
+        }
+
+        h2 { margin-top: 2rem; font-size: 2.4rem; }
+        p { opacity: 0.8; margin-top: 1rem; line-height: 1.6; }
+    }
+
+    &__form {
+        padding: 4rem;
+        @include m.tablet { width: 60%; }
+
+        h3 {
+            color: v.$azulOscuro;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+    }
+}
+
+.campo {
+    margin-bottom: 2rem;
+    
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: v.$azulOscuro;
+    }
+
+    input {
+        width: 100%;
+        padding: 1.2rem;
+        border: 1px solid #e1e1e1;
+        border-radius: 0.5rem;
+        outline: none;
+
+        &:focus {
+            border-color: v.$aqua;
+        }
+    }
+}
+
+.login-card__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+
+    .btn-primary {
+        @include m.boton(v.$aqua, v.$azulOscuro); 
+        width: 100%;
+    }
+
+    .enlace {
+        text-align: center;
+        color: v.$gris-texto;
+        font-size: 1.4rem;
+        text-decoration: none;
+        &:hover { color: v.$azulOscuro; text-decoration: underline; }
+    }
+}
+
+.alerta--error {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.4rem;
+}

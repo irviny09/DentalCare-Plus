@@ -1,0 +1,17 @@
+package com.ubam.dentcare_plus.dto.dentista;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UpdateClienteDTO {
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private Boolean estado;
+}
