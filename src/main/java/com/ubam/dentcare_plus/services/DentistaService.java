@@ -111,6 +111,10 @@ public class DentistaService {
             }
         }
 
+        if (dentistaRequest.getCitaId() != null) {
+            citaCompletaRepository.updateStatusCita(3, dentistaRequest.getCitaId());
+        }
+
         return MessageResponse.builder()
                 .message("Historial añadido correctamente")
                 .build();

@@ -31,6 +31,7 @@
                                     <th>Paciente</th>
                                     <th>Tratamiento</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyTable">
@@ -41,6 +42,43 @@
             </section>
         </main>
     </div>
+    
+    <!-- Modal Nuevo Historial -->
+    <div id="modalNuevoHistorial" class="modal-overlay">
+        <div class="modal-content modal-md">
+            <header class="modal-header">
+                <h2>Crear Historial y Completar Cita</h2>
+                <button class="btn-close" onclick="cerrarModal('modalNuevoHistorial')">✕</button>
+            </header>
+            <div class="modal-body">
+                <form id="form-nuevo-historial" class="premium-form">
+                    <input type="hidden" id="nh-cliente-id">
+                    <input type="hidden" id="nh-cita-id">
+                    <div class="form-group">
+                        <label>Diagnóstico:</label>
+                        <textarea id="nh-diagnostico" required rows="2" placeholder="Describa el diagnóstico general"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tratamiento:</label>
+                        <textarea id="nh-tratamiento" required rows="2" placeholder="Procedimientos realizados"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Recomendaciones:</label>
+                        <textarea id="nh-recomendaciones" required rows="2" placeholder="Instrucciones post-consulta"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Estudios (Imágenes):</label>
+                        <input type="file" id="nh-estudios" multiple accept="image/*" class="form-control" style="background: transparent; color: white;">
+                    </div>
+                    <div class="form-actions row-buttons">
+                        <button type="button" class="btn-secondary" onclick="cerrarModal('modalNuevoHistorial')">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar Historial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script th:src="@{/js/citasDentista.js}"></script>
 </body>
 </html>

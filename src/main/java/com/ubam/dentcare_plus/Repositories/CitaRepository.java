@@ -40,7 +40,21 @@ public interface CitaRepository extends JpaRepository<Citas, Integer> {
     CitasPorDiaDTO getCitasPorDia(@Param("dentistaId") int dentistaId);
 
     @Query(value = """
-                call sp_showCitasByDay(:dentistaId, :fecha);
+            SELECT 
+                trc.CitaId as citaId, 
+                toc.ClienteId as clienteId, 
+                DATE_FORMAT(trc.Cita_Hora, '%H:%i') as hora, 
+                CONCAT(u_cli.Usuario_Nombre, ' ', u_cli.Usuario_Apellido) as paciente, 
+                tcs.Servicio_Nombre as tratamiento, 
+                tcce.Estatus_Nombre as estado 
+            FROM tbl_rel_citas trc 
+            LEFT JOIN tbl_ope_clientes toc on trc.Cita_ClienteId = toc.ClienteId 
+            LEFT JOIN tbl_ope_usuarios u_cli on toc.Cliente_UsuarioId = u_cli.UsuarioId 
+            LEFT JOIN tbl_cat_servicios tcs on trc.Cita_ServicioId = tcs.ServicioId 
+            LEFT JOIN tbl_cat_citas_estatus tcce on trc.Cita_EstatusId = tcce.EstatusId 
+            WHERE trc.Cita_DentistaId = :dentistaId 
+            AND DATE(trc.Cita_Fecha) = :fecha 
+            ORDER BY trc.Cita_Hora ASC;
             """, nativeQuery = true)
     List<CitasPorDiaDetalleDTO> getCitasPorDiaDetalle(@Param("dentistaId") int dentistaId , @Param("fecha") LocalDate fecha);
 
