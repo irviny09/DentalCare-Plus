@@ -23,6 +23,8 @@ window.addEventListener('DOMContentLoaded', () => {
 const urlDetails = "/dentista/getCitasDay";
 
 const cargarDetails = async (fecha) => {
+
+    console.log(JSON.stringify({ "fecha": fecha }));
     const response = await fetch(urlDetails, {
         method: "post",
         headers: {
@@ -31,6 +33,7 @@ const cargarDetails = async (fecha) => {
         },
         body: JSON.stringify({ "fecha": fecha })
     });
+
     if (!response.ok) return;
     let citas = await response.json();
     console.log(citas);

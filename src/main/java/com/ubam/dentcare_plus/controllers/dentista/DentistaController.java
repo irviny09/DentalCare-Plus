@@ -14,8 +14,6 @@ import com.ubam.dentcare_plus.dto.dentista.CitasPorDiaDetalleDTO;
 import com.ubam.dentcare_plus.dto.dentista.CitasPorMesDTO;
 import com.ubam.dentcare_plus.dto.dentista.DiaRequest;
 import com.ubam.dentcare_plus.dto.dentista.HistorialDTO;
-import com.ubam.dentcare_plus.dto.dentista.PacientesDTO;
-import com.ubam.dentcare_plus.dto.common.IdRequest;
 import com.ubam.dentcare_plus.dto.common.MessageResponse;
 import com.ubam.dentcare_plus.dto.dentista.StatusDTO;
 import com.ubam.dentcare_plus.entities.CitaCompletaView;
@@ -52,15 +50,5 @@ public class DentistaController {
     @PostMapping("/getCitasDay")
     public ResponseEntity<List<CitasPorDiaDetalleDTO>> getDetailsCitas(@RequestBody DiaRequest diaRequest){
         return ResponseEntity.ok(dentistaService.getDetailsCita(diaRequest));
-    }
-
-    @GetMapping("getPacientes")
-    public ResponseEntity<List<PacientesDTO>> getPacientes(){
-        return ResponseEntity.ok(dentistaService.getPacientesAll());
-    }
-
-    @PostMapping("getPacientes")
-    public ResponseEntity<PacientesDTO> getPaciente(@RequestBody IdRequest idRequest){
-        return ResponseEntity.ok(dentistaService.getPacienteById(idRequest));
     }
 }

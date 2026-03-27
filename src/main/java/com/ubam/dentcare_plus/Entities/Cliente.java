@@ -33,6 +33,4 @@ public class Cliente {
     private Date fechaNacimiento;
     @Column(name = "Cliente_SaldoPendiente")
     private BigDecimal saldoPendiente;
-    @Column(name = "Cliente_Expediente")
-    private String expediente;
 }

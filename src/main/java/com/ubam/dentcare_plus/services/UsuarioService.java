@@ -124,10 +124,6 @@ public class UsuarioService {
                     .notas(citaNuevaDTO.getNotas())
                     .build();
         citaRepository.save(cita);
-        cliente.setSaldoPendiente(
-            cliente.getSaldoPendiente().add(new BigDecimal(Float.toString(servicios.getPrecio())))
-        );
-        clienteRepository.save(cliente);
         return MessageResponse.builder().message("Cita creada con exito").build();
     }
 
