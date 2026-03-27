@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class ActividadRecienteDTO {
     Integer id;
     LocalDate fecha;
-    BigDecimal costo;
+    Float costo;
     String nombre;
     String estatus;
 }
