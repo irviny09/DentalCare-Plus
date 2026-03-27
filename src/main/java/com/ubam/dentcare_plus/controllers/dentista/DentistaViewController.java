@@ -1,6 +1,5 @@
 package com.ubam.dentcare_plus.controllers.dentista;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class DentistaViewController {
         var nextPaciente = dentistaService.gPaciente();
 
         model.addAttribute("doctor" , dentistaService.gDentista().getUser().getName());
-        
+
         model.addAttribute("total", citasMes != null ? citasMes.getTotal() : 0);
         model.addAttribute("diferencia", citasMes != null ? citasMes.getDiferencia() : 0);
 
@@ -37,11 +36,21 @@ public class DentistaViewController {
 
         model.addAttribute("pendientesManana", pendientesManana != null ? pendientesManana.getPendientes() : 0);
 
-        model.addAttribute("namePaciente" , nextPaciente.getPaciente());
-        model.addAttribute("hourPaciente", nextPaciente.getHora());
-        model.addAttribute("tratamientoPaciente", nextPaciente.getTratamiento());
+        model.addAttribute("namePaciente" , nextPaciente != null ? nextPaciente.getPaciente() : "");
+        model.addAttribute("hourPaciente", nextPaciente != null ? nextPaciente.getHora() : "");
+        model.addAttribute("tratamientoPaciente", nextPaciente != null ? nextPaciente.getTratamiento() : "");
 
         return "dentistas/dashboard";
+    }
+
+    @GetMapping("/citas")
+    public String citas(){
+        return "dentistas/citas";
+    }
+
+    @GetMapping("/pacientes")
+    public String pacientes(){
+        return "dentistas/pacientes";
     }
 
 }

@@ -20,6 +20,7 @@ import com.ubam.dentcare_plus.repositories.ClienteRepository;
 import com.ubam.dentcare_plus.repositories.RoleRepository;
 import com.ubam.dentcare_plus.repositories.UserRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -47,6 +48,7 @@ public class AuthService {
             .build();
     }
 
+    @Transactional
     public TokenDTO register(RegistroDTO request) {
         Role userRole = roleRepository.findById(3).orElseThrow(() -> new RuntimeException("Error: rol no encontrado!"));
         User user = User.builder()
@@ -64,12 +66,18 @@ public class AuthService {
                                 .user(user)
                                 .fechaNacimiento(request.getFechaNacimiento())
                                 .saldoPendiente(new BigDecimal(0))
+                                .expediente(numExpediente())
                                 .build();
         clienteRepository.save(cliente);
 
         return TokenDTO.builder()
                 .token(jwtService.getToken(user))
                 .build();
+    }
+
+    public String numExpediente(){
+        long totalPacientes = clienteRepository.count();
+        return String.format("EXP-%04d" , totalPacientes + 1);
     }
 
 }

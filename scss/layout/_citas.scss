@@ -1,0 +1,52 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.appointments-container {
+    margin-top: 10px; // Espaciado extra respecto al selector de fecha
+
+    .appointments-card {
+        background: v.$blanco;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        overflow: hidden; 
+        border: none;
+    }
+}
+
+.appointments-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    .appointments-table {
+        width: 100%;
+        border-collapse: collapse;
+        
+        thead {
+            background-color: #fafbfc;
+            
+            th {
+                padding: 16px 24px;
+                text-align: left;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: v.$gris-texto;
+                border-bottom: 1px solid v.$negro;
+            }
+        }
+
+        tbody tr {
+            border-bottom: 1px solid v.$negro;
+            transition: background 0.2s ease;
+
+            &:last-child { border-bottom: none; }
+            &:hover { background-color: #f8fbfc; }
+
+            td {
+                padding: 16px 24px;
+                font-size: 1.6rem;
+                color: v.$azulOscuro;
+            }
+        }
+    }
+}

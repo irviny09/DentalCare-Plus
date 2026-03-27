@@ -14,15 +14,19 @@ const getCookie = (name) => {
 const token = getCookie("token_dentalcare");
 
 if (!token) window.location.href = "/";
-const hoy = new Date().toISOString().slice(0, 10);
 
-window.addEventListener('DOMContentLoaded', () => {
-    cargarDetails(hoy);
-})
 
 const urlDetails = "/dentista/getCitasDay";
 
-const cargarDetails = async (fecha) => {
+const calendar = document.getElementById("fecha-cita");
+
+calendar.addEventListener('input' , async (e) =>{
+    console.log(e.target.value);
+    await cargarTable(e.target.value);
+})
+
+const cargarTable = async (fecha) => {
+    console.log(fecha);
     const response = await fetch(urlDetails, {
         method: "post",
         headers: {
@@ -31,23 +35,21 @@ const cargarDetails = async (fecha) => {
         },
         body: JSON.stringify({ "fecha": fecha })
     });
-    if (!response.ok) return;
-    let citas = await response.json();
-    console.log(citas);
-    const tableContainer = document.getElementById("table-citas-hoy");
-    if (!tableContainer) return;
-    const bodyTable = tableContainer.querySelector("tbody")
-    bodyTable.innerHTML = ""
+    if (!response.ok) return new Error("error");
+    let citas = [];
+    citas = await response.json()
+    const table = document.getElementById("table-citas-hoy");
+    const tbody = table.querySelector("tbody");
+    tbody.innerHTML = "";
     citas.forEach(cita => {
-        bodyTable.innerHTML += `
-        <tr>
-            <td>${cita.hora}</td>
-            <td>${cita.paciente}</td>
-            <td>${cita.tratamiento}</td>
-            <td><span class="status ${acciones[cita.estado].clase}">${cita.estado}</span></td>
-        </tr>
-    `;
+        tbody.innerHTML += `
+            <tr>
+                <td>${cita.hora}</td>
+                <td>${cita.paciente}</td>
+                <td>${cita.tratamiento}</td>
+                <td><span class="status ${acciones[cita.estado].clase}">${cita.estado}</span></td>
+            </tr>
+        `;
     });
-
 
 }
