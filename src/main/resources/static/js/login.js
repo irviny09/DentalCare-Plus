@@ -1,4 +1,4 @@
-const urlLogin = "http://localhost:8080/auth/login";
+const urlLogin = "/auth/login";
 const formLogin = document.getElementById("loginForm");
 
 formLogin.addEventListener('submit' , async (e)=>{
