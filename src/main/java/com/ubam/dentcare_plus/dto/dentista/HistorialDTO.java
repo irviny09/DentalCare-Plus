@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HistorialDTO {
     Integer userId;
+    Integer citaId;
     String diagnostico;
     String tratamiento;
     String recomendacion;
